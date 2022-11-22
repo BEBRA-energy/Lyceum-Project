@@ -36,6 +36,8 @@ public:
     //кол-во популярных буквосочетаний / всего буквосочетаний
     double letter_combination();
 
+    // Methods
+
     vector<string> get_sentences();
 };
 
