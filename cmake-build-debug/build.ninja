@@ -67,17 +67,17 @@ build CMakeFiles/CMakeProject.dir/main.cpp.obj: CXX_COMPILER__CMakeProject_Debug
   OBJECT_DIR = CMakeFiles\CMakeProject.dir
   OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir
 
-build CMakeFiles/CMakeProject.dir/Extractor.cpp.obj: CXX_COMPILER__CMakeProject_Debug D$:/Lyceum/BEBRA$ energy/CMakeProject/Extractor.cpp || cmake_object_order_depends_target_CMakeProject
-  DEP_FILE = CMakeFiles\CMakeProject.dir\Extractor.cpp.obj.d
+build CMakeFiles/CMakeProject.dir/Classes/Extractor.cpp.obj: CXX_COMPILER__CMakeProject_Debug D$:/Lyceum/BEBRA$ energy/CMakeProject/Classes/Extractor.cpp || cmake_object_order_depends_target_CMakeProject
+  DEP_FILE = CMakeFiles\CMakeProject.dir\Classes\Extractor.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\CMakeProject.dir
-  OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir\Classes
 
-build CMakeFiles/CMakeProject.dir/StringHelper.cpp.obj: CXX_COMPILER__CMakeProject_Debug D$:/Lyceum/BEBRA$ energy/CMakeProject/StringHelper.cpp || cmake_object_order_depends_target_CMakeProject
-  DEP_FILE = CMakeFiles\CMakeProject.dir\StringHelper.cpp.obj.d
+build CMakeFiles/CMakeProject.dir/Helpers/StringHelper.cpp.obj: CXX_COMPILER__CMakeProject_Debug D$:/Lyceum/BEBRA$ energy/CMakeProject/Helpers/StringHelper.cpp || cmake_object_order_depends_target_CMakeProject
+  DEP_FILE = CMakeFiles\CMakeProject.dir\Helpers\StringHelper.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\CMakeProject.dir
-  OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir\Helpers
 
 
 # =============================================================================
@@ -87,7 +87,7 @@ build CMakeFiles/CMakeProject.dir/StringHelper.cpp.obj: CXX_COMPILER__CMakeProje
 #############################################
 # Link the executable CMakeProject.exe
 
-build CMakeProject.exe: CXX_EXECUTABLE_LINKER__CMakeProject_Debug CMakeFiles/CMakeProject.dir/main.cpp.obj CMakeFiles/CMakeProject.dir/Extractor.cpp.obj CMakeFiles/CMakeProject.dir/StringHelper.cpp.obj
+build CMakeProject.exe: CXX_EXECUTABLE_LINKER__CMakeProject_Debug CMakeFiles/CMakeProject.dir/main.cpp.obj CMakeFiles/CMakeProject.dir/Classes/Extractor.cpp.obj CMakeFiles/CMakeProject.dir/Helpers/StringHelper.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CMakeProject.dir

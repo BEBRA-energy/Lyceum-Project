@@ -74,3 +74,7 @@ vector<string> StringHelper::get_conjunctions() {
 vector<string> StringHelper::get_prepositions() {
     return StringHelper::prepositions;
 }
+
+vector<string> StringHelper::get_popular_combinations() {
+    return StringHelper::popular_combinations;
+}

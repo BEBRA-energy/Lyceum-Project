@@ -5,39 +5,42 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include "StringHelper.h"
+#include "../Helpers/StringHelper.h"
 
 using namespace std;
 
 class Extractor {
 
 private:
+
     string text;
     vector<string> sentences, words;
     vector<vector<string>> sentences_with_words;
 
 public:
+
     Extractor(const string &path);
 
     // Features
 
-    // Подсчёт союзов
+    // Conjunctions count
     double count_conjunctions();
 
-    // Подсчёт предлогов
+    // Preposition count
     double count_prepositions();
 
-    // Средняя длина слов в тексте
+    // Average word length
     double average_word_length();
 
-    // Средняя длина предложений в тексте
+    // Average sentence length (in words)
     double average_sentence_length();
 
-    //кол-во популярных буквосочетаний / всего буквосочетаний
+    // Proportion of popular letter combinations
     double letter_combination();
 
     // Methods
 
+    // Getter for sentences field
     vector<string> get_sentences();
 };
 

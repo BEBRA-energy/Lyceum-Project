@@ -38,10 +38,10 @@ double Extractor::count_conjunctions() {
 double Extractor::count_prepositions() {
     int total_prepositions_count = 0;
 
-    vector<string> conjunctions = StringHelper::get_conjunctions();
+    vector<string> prepositions = StringHelper::get_prepositions();
 
     for (const string &word: this->words) {
-        if (find(conjunctions.begin(), conjunctions.end(), word) != conjunctions.end())
+        if (find(prepositions.begin(), prepositions.end(), word) != prepositions.end())
             total_prepositions_count++;
     }
 
@@ -54,15 +54,18 @@ double Extractor::letter_combination() {
     int combinations_length = 0, total_text_length = 0;
 
     for (const string &word: this->words) {
-        for (int i = 0; i < word.size() - 1; i++) {
+        vector<string> popular_combinations = StringHelper::get_popular_combinations();
+
+        for (int i = 0; i < int(word.size()) - 1; i++) {
             string b = word.substr(i, 2);
-            if (b == "ст" || b == "но" || b == "ен" || b == "то" || b == "на" || b == "ов" || b == "ни" || b == "ра" || b == "во" || b == "ко") {
+            if (find(popular_combinations.begin(), popular_combinations.end(), b) != popular_combinations.end()) {
                 combinations_length += 2;
             }
         }
-        for (int i = 0; i < word.size() - 2; i++) {
+
+        for (int i = 0; i < int(word.size()) - 2; i++) {
             string b = word.substr(i, 3);
-            if (b == "сто" || b == "ено" || b == "нов" || b == "тов" || b == "ово" || b == "ова") {
+            if (find(popular_combinations.begin(), popular_combinations.end(), b) != popular_combinations.end()) {
                 combinations_length += 3;
             }
         }
