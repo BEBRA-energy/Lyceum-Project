@@ -1,0 +1,9 @@
+# ninja log v5
+3	358	6908377990187979	CMakeFiles/CMakeProject.dir/main.cpp.obj	1a5e9c98db97df2c
+322	410	6908378435740592	CMakeProject.exe	1c4e8dd964b9799a
+2	322	6908378434881400	CMakeFiles/CMakeProject.dir/StringHelper.cpp.obj	e5732193c83cb69e
+6	411	6908377990701415	CMakeFiles/CMakeProject.dir/Extractor.cpp.obj	9eb6d99c274bddc9
+9	466	6908444036802760	CMakeFiles/CMakeProject.dir/StringHelper.cpp.obj	e5732193c83cb69e
+2	612	6908444038272562	CMakeFiles/CMakeProject.dir/main.cpp.obj	1a5e9c98db97df2c
+2	594	6908444222488771	CMakeFiles/CMakeProject.dir/Extractor.cpp.obj	9eb6d99c274bddc9
+594	837	6908444224880815	CMakeProject.exe	1c4e8dd964b9799a
