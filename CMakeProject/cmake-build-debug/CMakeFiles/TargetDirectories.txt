@@ -1,3 +1,0 @@
-D:/Lyceum/BEBRA energy/CMakeProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-D:/Lyceum/BEBRA energy/CMakeProject/cmake-build-debug/CMakeFiles/CMakeProject.dir
-D:/Lyceum/BEBRA energy/CMakeProject/cmake-build-debug/CMakeFiles/edit_cache.dir
