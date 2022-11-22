@@ -10,9 +10,8 @@ int main() {
 
     cout << res.size() << '\n';
 
-    for (const auto &el: res) {
+    for (const auto &el: res)
         cout << el << '\n';
-    }
 
     return 0;
 }
