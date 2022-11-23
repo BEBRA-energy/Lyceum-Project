@@ -80,21 +80,21 @@ vector<string> StringHelper::get_popular_combinations() {
 }
 
 bool StringHelper::is_vowel(char c) {
-    return VectorHelper::is_in_vector(StringHelper::vowel_letters, c);
+    return StdVectorHelper::is_in_vector(StringHelper::vowel_letters, c);
 }
 
 bool StringHelper::is_consonant(char c) {
-    return VectorHelper::is_in_vector(StringHelper::consonant_letters, c);
+    return StdVectorHelper::is_in_vector(StringHelper::consonant_letters, c);
 }
 
 bool StringHelper::is_conjunction(const string &word) {
-    return VectorHelper::is_in_vector(StringHelper::conjunctions, word);
+    return StdVectorHelper::is_in_vector(StringHelper::conjunctions, word);
 }
 
 bool StringHelper::is_prepositions(const string &word) {
-    return VectorHelper::is_in_vector(StringHelper::prepositions, word);
+    return StdVectorHelper::is_in_vector(StringHelper::prepositions, word);
 }
 
 bool StringHelper::is_popular_combination(const string &word) {
-    return VectorHelper::is_in_vector(StringHelper::popular_combinations, word);
+    return StdVectorHelper::is_in_vector(StringHelper::popular_combinations, word);
 }

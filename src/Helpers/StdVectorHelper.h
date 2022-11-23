@@ -1,5 +1,5 @@
-#ifndef CMAKEPROJECT_VECTORHELPER_H
-#define CMAKEPROJECT_VECTORHELPER_H
+#ifndef CMAKEPROJECT_STDVECTORHELPER_H
+#define CMAKEPROJECT_STDVECTORHELPER_H
 
 #include <vector>
 #include <algorithm>
@@ -7,11 +7,11 @@
 
 using namespace std;
 
-class VectorHelper {
+class StdVectorHelper {
 
 private:
     // Hide the constructor
-    VectorHelper() = default;
+    StdVectorHelper() = default;
 
 public:
 
@@ -20,9 +20,9 @@ public:
 };
 
 template<class Type>
-bool VectorHelper::is_in_vector(const vector<Type> &vec, const Type &element) {
+bool StdVectorHelper::is_in_vector(const vector<Type> &vec, const Type &element) {
     return find(vec.begin(), vec.end(), element) != vec.end();
 }
 
 
-#endif //CMAKEPROJECT_VECTORHELPER_H
+#endif //CMAKEPROJECT_STDVECTORHELPER_H

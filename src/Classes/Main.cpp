@@ -1,4 +1,4 @@
-#include <Main.h>
+#include "Main.h"
 
 Main::Main(string texts_folder){
     for(int i=1;i<=4;i++){
