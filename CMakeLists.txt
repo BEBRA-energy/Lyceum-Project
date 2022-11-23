@@ -3,4 +3,4 @@ project(CMakeProject)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(CMakeProject main.cpp Classes/Extractor.cpp Classes/Extractor.h Helpers/StringHelper.cpp Helpers/StringHelper.h)
+add_executable(CMakeProject src/main.cpp src/Classes/Extractor.cpp src/Classes/Extractor.h src/Helpers/StringHelper.cpp src/Helpers/StringHelper.h)
