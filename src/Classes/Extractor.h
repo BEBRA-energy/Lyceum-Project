@@ -7,7 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <map>
-#include <math.h>
+#include <cmath>
 
 #include "../Helpers/StringHelper.h"
 
@@ -17,15 +17,15 @@ class Extractor {
 
 private:
     string path;
-    const string text = this->read_text();
+    string text;
     vector<string> sentences, words;
     vector<vector<string>> sentences_with_words;
 
 public:
-    
-    Extractor(string &path);
 
-    string read_text();
+    Extractor(const string &path);
+
+//    string read_text();
 
     // Features
 
@@ -45,10 +45,10 @@ public:
     double popular_letter_combination();
 
     // Proportions of word pairs with definite contiguous letters (V-V, V-C, C-V, C-C)
-    vector <double> definite_contiguous_letters();
+    vector<double> definite_contiguous_letters();
 
     // Proportion of word pairs with vowels at the end and consonants at the beginning  (2-2, 2-3, 3-2, 3-3)
-    vector <double> vowel_end_and_consonant_beginning();
+    vector<double> vowel_end_and_consonant_beginning();
 
     // Methods
 

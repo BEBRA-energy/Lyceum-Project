@@ -1,8 +1,9 @@
 #include "Extractor.h"
 
-Extractor::Extractor(string &path) {
-    ifstream fin(path);
+Extractor::Extractor(const string &path) {
     this->path = path;
+    ifstream fin(this->path);
+    getline(fin, this->text);
 
     this->sentences = StringHelper::parse_into_sentences(this->text);
     this->words = StringHelper::parse_into_words(this->text);
