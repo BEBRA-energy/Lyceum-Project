@@ -79,11 +79,17 @@ build CMakeFiles/CMakeProject.dir/src/Helpers/StringHelper.cpp.obj: CXX_COMPILER
   OBJECT_DIR = CMakeFiles\CMakeProject.dir
   OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir\src\Helpers
 
-build CMakeFiles/CMakeProject.dir/src/Helpers/VectorHelper.cpp.obj: CXX_COMPILER__CMakeProject_Debug D$:/Lyceum/BEBRA$ energy/CMakeProject/src/Helpers/VectorHelper.cpp || cmake_object_order_depends_target_CMakeProject
-  DEP_FILE = CMakeFiles\CMakeProject.dir\src\Helpers\VectorHelper.cpp.obj.d
+build CMakeFiles/CMakeProject.dir/src/Helpers/StdVectorHelper.cpp.obj: CXX_COMPILER__CMakeProject_Debug D$:/Lyceum/BEBRA$ energy/CMakeProject/src/Helpers/StdVectorHelper.cpp || cmake_object_order_depends_target_CMakeProject
+  DEP_FILE = CMakeFiles\CMakeProject.dir\src\Helpers\StdVectorHelper.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\CMakeProject.dir
   OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir\src\Helpers
+
+build CMakeFiles/CMakeProject.dir/src/Classes/Main.cpp.obj: CXX_COMPILER__CMakeProject_Debug D$:/Lyceum/BEBRA$ energy/CMakeProject/src/Classes/Main.cpp || cmake_object_order_depends_target_CMakeProject
+  DEP_FILE = CMakeFiles\CMakeProject.dir\src\Classes\Main.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles\CMakeProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\CMakeProject.dir\src\Classes
 
 
 # =============================================================================
@@ -93,7 +99,7 @@ build CMakeFiles/CMakeProject.dir/src/Helpers/VectorHelper.cpp.obj: CXX_COMPILER
 #############################################
 # Link the executable CMakeProject.exe
 
-build CMakeProject.exe: CXX_EXECUTABLE_LINKER__CMakeProject_Debug CMakeFiles/CMakeProject.dir/src/main.cpp.obj CMakeFiles/CMakeProject.dir/src/Classes/Extractor.cpp.obj CMakeFiles/CMakeProject.dir/src/Helpers/StringHelper.cpp.obj CMakeFiles/CMakeProject.dir/src/Helpers/VectorHelper.cpp.obj
+build CMakeProject.exe: CXX_EXECUTABLE_LINKER__CMakeProject_Debug CMakeFiles/CMakeProject.dir/src/main.cpp.obj CMakeFiles/CMakeProject.dir/src/Classes/Extractor.cpp.obj CMakeFiles/CMakeProject.dir/src/Helpers/StringHelper.cpp.obj CMakeFiles/CMakeProject.dir/src/Helpers/StdVectorHelper.cpp.obj CMakeFiles/CMakeProject.dir/src/Classes/Main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CMakeProject.dir

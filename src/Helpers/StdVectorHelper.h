@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/Helpers/VectorHelper.h
 <<<<<<< HEAD
 #include "../Classes/Extractor.h"
 
@@ -11,6 +12,10 @@ class VectorHelper{
 =======
 #ifndef CMAKEPROJECT_VECTORHELPER_H
 #define CMAKEPROJECT_VECTORHELPER_H
+=======
+#ifndef CMAKEPROJECT_STDVECTORHELPER_H
+#define CMAKEPROJECT_STDVECTORHELPER_H
+>>>>>>> e6f7f982b0bc2aa564599c5853abbf801712f5ed:src/Helpers/StdVectorHelper.h
 
 #include <vector>
 #include <algorithm>
@@ -18,11 +23,11 @@ class VectorHelper{
 
 using namespace std;
 
-class VectorHelper {
+class StdVectorHelper {
 
 private:
     // Hide the constructor
-    VectorHelper() = default;
+    StdVectorHelper() = default;
 
 public:
 
@@ -31,10 +36,14 @@ public:
 };
 
 template<class Type>
-bool VectorHelper::is_in_vector(const vector<Type> &vec, const Type &element) {
+bool StdVectorHelper::is_in_vector(const vector<Type> &vec, const Type &element) {
     return find(vec.begin(), vec.end(), element) != vec.end();
 }
 
 
+<<<<<<< HEAD:src/Helpers/VectorHelper.h
 #endif //CMAKEPROJECT_VECTORHELPER_H
 >>>>>>> b5a1467c3b89d8fd2a0da14f41cde872215bf0ec
+=======
+#endif //CMAKEPROJECT_STDVECTORHELPER_H
+>>>>>>> e6f7f982b0bc2aa564599c5853abbf801712f5ed:src/Helpers/StdVectorHelper.h
