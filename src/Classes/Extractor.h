@@ -50,6 +50,9 @@ public:
 
     // Getter for sentences field
     vector<string> get_sentences();
+
+    // applys all functions to text
+    map<string, double> get_all_info();
 };
 
 #endif //CMAKEPROJECT_EXTRACTOR_H
