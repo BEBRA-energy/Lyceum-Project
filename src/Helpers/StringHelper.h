@@ -53,7 +53,7 @@ public:
     static vector<string> parse_into_words(const string &str);
 
     // Parse sentences into words
-    static vector<vector<string>> parse_into_sentences_with_words(vector<string> &sentences);
+    static vector<vector<string>> parse_into_sentences_with_words(const vector<string> &sentences);
 
     // Getter for conjunctions field
     static vector<string> get_conjunctions();
@@ -78,6 +78,12 @@ public:
 
     // Check if a letter is consonant
     static bool is_consonant(char c);
+
+    // Check if a string consists of only vowel letters
+    static bool only_vowels(const string &str);
+
+    // Check if a string consists of only consonant letters
+    static bool only_consonants(const string &str);
 };
 
 #endif //CMAKEPROJECT_STRINGHELPER_H

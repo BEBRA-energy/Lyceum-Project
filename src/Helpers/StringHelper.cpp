@@ -9,7 +9,7 @@ char StringHelper::to_lower(char c) {
     return c;
 }
 
-string StringHelper::to_lower(string &str) {
+string StringHelper::to_lower(const string &str) {
     string result = "";
 
     for (char c: str)
@@ -18,7 +18,7 @@ string StringHelper::to_lower(string &str) {
     return result;
 }
 
-vector<string> StringHelper::parse_into_sentences(string &str) {
+vector<string> StringHelper::parse_into_sentences(const string &str) {
     string end_of_sentences = ".!?", current_sentence = "";
 
     vector<string> result;
@@ -36,7 +36,7 @@ vector<string> StringHelper::parse_into_sentences(string &str) {
 }
 
 
-vector<string> StringHelper::parse_into_words(string &str) {
+vector<string> StringHelper::parse_into_words(const string &str) {
     string end_of_word = " ,:;—.!", current_word = "";
 
     vector<string> result;
@@ -56,8 +56,8 @@ vector<string> StringHelper::parse_into_words(string &str) {
     return result;
 }
 
-vector<vector<string>> StringHelper::parse_into_sentences_with_words(vector<string> &sentences) {
-    vector<vector<string>> result;
+vector<vector<string>> StringHelper::parse_into_sentences_with_words(const vector<string> &sentences) {
+    vector<vector<string >> result;
 
     for (string sentence: sentences) {
         vector<string> words = StringHelper::parse_into_words(sentence);
@@ -97,4 +97,20 @@ bool StringHelper::is_prepositions(const string &word) {
 
 bool StringHelper::is_popular_combination(const string &word) {
     return StdVectorHelper::is_in_vector(StringHelper::popular_combinations, word);
+}
+
+bool StringHelper::only_vowels(const string &str) {
+    for (char c: str) {
+        if (!StringHelper::is_vowel(c))
+            return false;
+    }
+    return true;
+}
+
+bool StringHelper::only_consonants(const string &str) {
+    for (char c: str) {
+        if (!StringHelper::is_consonant(c))
+            return false;
+    }
+    return true;
 }

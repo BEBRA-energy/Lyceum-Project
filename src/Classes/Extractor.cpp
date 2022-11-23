@@ -54,18 +54,16 @@ double Extractor::popular_letter_combination() {
     int combinations_length = 0, total_text_length = 0;
 
     for (const string &word: this->words) {
-        vector<string> popular_combinations = StringHelper::get_popular_combinations();
-
         for (int i = 0; i < int(word.size()) - 1; i++) {
-            string b = word.substr(i, 2);
-            if (find(popular_combinations.begin(), popular_combinations.end(), b) != popular_combinations.end()) {
+            string sub_str = word.substr(i, 2);
+            if (StringHelper::is_popular_combination(sub_str)) {
                 combinations_length += 2;
             }
         }
 
         for (int i = 0; i < int(word.size()) - 2; i++) {
-            string b = word.substr(i, 3);
-            if (find(popular_combinations.begin(), popular_combinations.end(), b) != popular_combinations.end()) {
+            string sub_str = word.substr(i, 3);
+            if (StringHelper::is_popular_combination(sub_str)) {
                 combinations_length += 3;
             }
         }
@@ -83,7 +81,31 @@ vector<double> Extractor::definite_contiguous_letters() {
 }
 
 vector<double> Extractor::vowel_end_and_consonant_beginning() {
-    return {};
+    vector<int> combinations_count(4);
+
+    string previous_word = "";
+
+    for (const string &word: this->words) {
+        if (!previous_word.empty() && previous_word.length() >= 3 && word.length() >= 3) {
+            string last_two = previous_word.substr(int(previous_word.length()) - 2, 2),
+                    last_three = previous_word.substr(int(previous_word.length()) - 3, 3),
+                    first_two = word.substr(0, 2),
+                    first_three = word.substr(0, 3);
+
+            combinations_count[0] += StringHelper::only_vowels(last_two) && StringHelper::only_consonants(first_two);
+            combinations_count[1] += StringHelper::only_vowels(last_two) && StringHelper::only_consonants(first_three);
+            combinations_count[2] += StringHelper::only_vowels(last_three) && StringHelper::only_consonants(first_two);
+            combinations_count[3] += StringHelper::only_vowels(last_three) && StringHelper::only_consonants(first_three);
+        }
+        previous_word = word;
+    }
+
+    vector<double> result(4);
+
+    for (int i = 0; i < 4; i++)
+        result[i] = double(combinations_count[i]) / double(this->words.size());
+
+    return result;
 }
 
 map<string, double> Extractor::get_all_info() {
