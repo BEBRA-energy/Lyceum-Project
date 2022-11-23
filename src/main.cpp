@@ -1,16 +1,12 @@
 #include "Classes/Extractor.h"
-<<<<<<< HEAD
 #include "Helpers/VectorHelper.h"
 
 #include <iostream>
-=======
 #include <fstream>
->>>>>>> b5a1467c3b89d8fd2a0da14f41cde872215bf0ec
 
 using namespace std;
 
-int main() {
-<<<<<<< HEAD
+int compare(){
     string texts_folder = "../texts";
     vector<map<string, double>> features;
     
@@ -18,10 +14,12 @@ int main() {
         string path = texts_folder + to_string(i); 
         Extractor extractor(path);
         features.push_back(extractor.get_all_info());
-    }
+    }   
 
-     
-=======
+    // to be continued....
+}
+
+int main() {
     setlocale(LC_ALL, "ru");
 
     Extractor ex("../texts/1.txt");
@@ -34,7 +32,6 @@ int main() {
 
     for (const auto &el: res)
         fout << el << '\n';
->>>>>>> b5a1467c3b89d8fd2a0da14f41cde872215bf0ec
 
     return 0;
 }
