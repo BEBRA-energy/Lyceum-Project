@@ -1,9 +1,9 @@
 #include "Extractor.h"
 #include "../Helpers/StringHelper.h"
 
-Extractor::Extractor(const string &path) {
+Extractor::Extractor(string &path) {
     ifstream fin(path);
-    getline(fin, this->text);
+    this->path = path;
 
     this->sentences = StringHelper::parse_into_sentences(this->text);
     this->words = StringHelper::parse_into_words(this->text);

@@ -37,13 +37,13 @@ public:
     static char to_lower(char c);
 
     // String to lower case
-    static string to_lower(string &str);
+    static string to_lower(const string &str);
 
     // Parse string into sentences
-    static vector<string> parse_into_sentences(string &str);
+    static vector<string> parse_into_sentences(const string &str);
 
     // Parse string into words
-    static vector<string> parse_into_words(string &str);
+    static vector<string> parse_into_words(const string &str);
 
     // Parse sentences into words
     static vector<vector<string>> parse_into_sentences_with_words(vector<string> &sentences);
