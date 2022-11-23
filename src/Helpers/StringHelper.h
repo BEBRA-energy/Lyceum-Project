@@ -3,33 +3,40 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
+
+#include "VectorHelper.h"
 
 using namespace std;
 
 class StringHelper {
 
 private:
-
     // Hide the constructor
     StringHelper() = default;
 
     // List of conjunctions in russian language
-    inline static vector<string> conjunctions = {
-            "Р°", "Р±Р»Р°РіРѕРґР°СЂСЏ", "Р±Р»Р°РіРѕ", "Р±СѓРґС‚Рѕ", "РІРґРѕР±Р°РІРѕРє", "РґР°", "РґР°Р±С‹", "РґР°Р¶Рµ", "Р¶Рµ", "РµРґРІР°", "РµР¶РµР»Рё", "РµСЃР»Рё", "Р·Р°С‚РµРј", "Р·Р°С‚Рѕ", "Р·Р°С‡РµРј", "Рё", "РёР±Рѕ", "РёР»Рё", "РєР°Р±С‹", "РєР°Рє", "РєРѕРіРґР°", "РєРѕР»Рё", "Р»РёР±Рѕ", "Р»Рё", "Р»РёС€СЊ", "РЅРµР¶РµР»Рё", "РЅРµСЃРјРѕС‚СЂСЏ", "РЅРµРІР·РёСЂР°СЏ", "РЅРѕ", "РѕРґРЅР°РєРѕ",
-            "РѕС‚С‚РѕРіРѕ", "РѕС‚С‡РµРіРѕ", "РїРѕРєР°", "РїРѕРєР°РјРµСЃС‚", "РїРѕРєСѓРґР°", "РїРѕСЃРєРѕР»СЊРєСѓ", "РїРѕС‚РѕРјСѓ", "РїРѕС‡РµРјСѓ", "РїСЂРёС‚РѕРј", "РїСЂРёС‡РµРј", "РїСѓСЃРєР°Р№", "РїСѓСЃС‚СЊ", "СЂР°Р·", "СЃР»РѕРІРЅРѕ", "С‚Р°РєР¶Рµ", "С‚РѕР¶Рµ", "С‚РѕР»СЊРєРѕ", "С‚РѕС‡РЅРѕ", "С…РѕС‚СЏ", "С‡РµРј", "С‡С‚Рѕ", "С‡С‚РѕР±", "С‡С‚РѕР±С‹"
+    inline const static vector<string> conjunctions = {
+            "а", "благодаря", "благо", "будто", "вдобавок", "да", "дабы", "даже", "же", "едва", "ежели", "если", "затем", "зато", "зачем", "и", "ибо", "или", "кабы", "как", "когда", "коли", "либо", "ли", "лишь", "нежели", "несмотря", "невзирая", "но", "однако",
+            "оттого", "отчего", "пока", "покамест", "покуда", "поскольку", "потому", "почему", "притом", "причем", "пускай", "пусть", "раз", "словно", "также", "тоже", "только", "точно", "хотя", "чем", "что", "чтоб", "чтобы"
     };
 
     // List of prepositions in russian language
-    inline static vector<string> prepositions = {
-            "Р±РµР·", "Р±Р»РёР·", "РІ", "РІРјРµСЃС‚Рѕ", "РІРЅРµ", "РґР»СЏ", "РґРѕ", "Р·Р°", "РёР·", "РёР·-Р·Р°", "РёР·-РїРѕРґ", "Рє", "РєСЂРѕРјРµ", "РјРµР¶РґСѓ", "РјРµР¶", "РєРѕ", "РІРѕ", "Р±РµР·Рѕ", "РЅР°", "РЅР°Рґ", "РЅР°РґРѕ", "Рѕ", "РѕР±", "РѕР±Рѕ", "РѕС‚", "РѕС‚Рѕ", "РїРµСЂРµРґ", "РїРµСЂРµРґРѕ",
-            "РїСЂРµРґ", "РїСЂРµРґРѕ", "РїРѕ", "РїРѕРґ", "РїРѕРґРѕ", "РїСЂРё", "РїСЂРѕ", "СЂР°РґРё", "СЃ", "СЃРѕ", "СЃРєРІРѕР·СЊ", "СЃСЂРµРґРё", "Сѓ", "С‡РµСЂРµР·",
+    inline const static vector<string> prepositions = {
+            "без", "близ", "в", "вместо", "вне", "для", "до", "за", "из", "из-за", "из-под", "к", "кроме", "между", "меж", "ко", "во", "безо", "на", "над", "надо", "о", "об", "обо", "от", "ото", "перед", "передо",
+            "пред", "предо", "по", "под", "подо", "при", "про", "ради", "с", "со", "сквозь", "среди", "у", "через",
     };
 
     // List of popular letter combinations in russian language
-    inline static vector<string> popular_combinations = {
-            "СЃС‚", "РЅРѕ", "РµРЅ", "С‚Рѕ", "РЅР°", "РѕРІ", "РЅРё", "СЂР°", "РІРѕ", "РєРѕ", "СЃС‚Рѕ", "РµРЅРѕ", "РЅРѕРІ", "С‚РѕРІ", "РѕРІРѕ", "РѕРІР°"
+    inline const static vector<string> popular_combinations = {
+            "ст", "но", "ен", "то", "на", "ов", "ни", "ра", "во", "ко", "сто", "ено", "нов", "тов", "ово", "ова"
     };
 
+    // List of vowel letters in russian language
+    inline const static vector<char> vowel_letters = {'а', 'о', 'у', 'э', 'е', 'и', 'ё', 'я', 'ю', 'ы'};
+
+    // List of consonant letters in russian language
+    inline const static vector<char> consonant_letters = {'й', 'ц', 'к', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'в', 'п', 'р', 'л', 'д', 'ж', 'ч', 'с', 'м', 'т', 'ь', 'б'};
 
 public:
 
@@ -51,11 +58,26 @@ public:
     // Getter for conjunctions field
     static vector<string> get_conjunctions();
 
+    // Check if the word is conjunction
+    static bool is_conjunction(const string &word);
+
     // Getter for prepositions field
     static vector<string> get_prepositions();
 
-    // Getter for popular combinations
+    // Check if the word is preposition
+    static bool is_prepositions(const string &word);
+
+    // Getter for popular letter combinations
     static vector<string> get_popular_combinations();
+
+    // Check if the word is popular letter combination
+    static bool is_popular_combination(const string &word);
+
+    // Check if a letter is a vowel
+    static bool is_vowel(char c);
+
+    // Check if a letter is consonant
+    static bool is_consonant(char c);
 };
 
 #endif //CMAKEPROJECT_STRINGHELPER_H

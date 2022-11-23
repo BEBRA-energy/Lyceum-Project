@@ -1,17 +1,21 @@
 #include "Classes/Extractor.h"
-#include <iostream>
+#include <fstream>
 
 using namespace std;
 
 int main() {
-    Extractor ex("../texts/0.txt");
+    setlocale(LC_ALL, "ru");
+
+    Extractor ex("../texts/1.txt");
 
     auto res = ex.get_sentences();
 
-    cout << res.size() << '\n';
+    ofstream fout("output.txt");
+
+    fout << res.size() << '\n';
 
     for (const auto &el: res)
-        cout << el << '\n';
+        fout << el << '\n';
 
     return 0;
 }

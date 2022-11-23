@@ -48,7 +48,7 @@ double Extractor::count_prepositions() {
     return double(total_prepositions_count) / double(this->words.size());
 }
 
-double Extractor::letter_combination() {
+double Extractor::popular_letter_combination() {
     string s = StringHelper::to_lower(this->text);
 
     int combinations_length = 0, total_text_length = 0;
@@ -76,4 +76,12 @@ double Extractor::letter_combination() {
 
 vector<string> Extractor::get_sentences() {
     return this->sentences;
+}
+
+vector<double> Extractor::definite_contiguous_letters() {
+    return {};
+}
+
+vector<double> Extractor::vowel_end_and_consonant_beginning() {
+    return {};
 }

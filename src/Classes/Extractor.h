@@ -5,6 +5,8 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <map>
+
 #include "../Helpers/StringHelper.h"
 
 using namespace std;
@@ -36,7 +38,13 @@ public:
     double average_sentence_length();
 
     // Proportion of popular letter combinations
-    double letter_combination();
+    double popular_letter_combination();
+
+    // Proportions of word pairs with definite contiguous letters (V-V, V-C, C-V, C-C)
+    vector <double> definite_contiguous_letters();
+
+    // Proportion of word pairs with vowels at the end and consonants at the beginning  (2-2, 2-3, 3-2, 3-3)
+    vector <double> vowel_end_and_consonant_beginning();
 
     // Methods
 
