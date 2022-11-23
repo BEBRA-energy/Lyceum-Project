@@ -1,4 +1,5 @@
 #include "Extractor.h"
+#include "../Helpers/StringHelper.h"
 
 Extractor::Extractor(const string &path) {
     ifstream fin(path);
@@ -76,4 +77,17 @@ double Extractor::letter_combination() {
 
 vector<string> Extractor::get_sentences() {
     return this->sentences;
+}
+
+map<string, double> Extractor::get_all_info(){
+
+    map<string, double> result;
+
+    result["conjunctions"] = this->count_conjunctions();
+    result["prepositions"] = this->count_prepositions();
+    result["avg_word_length"] = this->average_word_length();
+    result["avg_sentence_length"] = this->average_sentence_length();
+    result["popular_combinations_proportion"] = this->letter_combination();
+    
+    return result;
 }

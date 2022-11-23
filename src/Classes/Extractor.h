@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <map>
 #include "../Helpers/StringHelper.h"
 
 using namespace std;
@@ -13,7 +14,7 @@ class Extractor {
 
 private:
 
-    string text;
+    const string text;
     vector<string> sentences, words;
     vector<vector<string>> sentences_with_words;
 
@@ -42,6 +43,9 @@ public:
 
     // Getter for sentences field
     vector<string> get_sentences();
+
+    // applys all functions to text
+    map<string, double> get_all_info();
 };
 
 #endif //CMAKEPROJECT_EXTRACTOR_H
