@@ -18,6 +18,8 @@ class Extractor {
 private:
     string path;
     string text;
+    int total_letter_count;
+
     vector<string> sentences, words;
     vector<vector<string>> sentences_with_words;
 
@@ -50,10 +52,27 @@ public:
     // Proportion of word pairs with vowels at the end and consonants at the beginning  (2-2, 2-3, 3-2, 3-3)
     vector<double> vowel_end_and_consonant_beginning();
 
+    // Occurrence of each letter
+    vector<double> letter_statistic();
+
+    // Proportion of vowel and consonant letters
+    vector<double> vowel_and_consonant_proportions();
+
+    // Proportion of rare consonants
+    double rare_consonants();
+
+    // Proportion of rare letters
+    double rare_letters();
+
+    // Proportion of voiceless and voiced consonants
+    vector<double> voiceless_and_voiced_consonants();
+
     // Methods
 
     // Getter for sentences field
-    vector<string> get_sentences();
+    vector<string>
+
+    get_sentences();
 
     // Applies all functions to text
     map<string, double> get_all_info();

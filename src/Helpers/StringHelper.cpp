@@ -114,3 +114,30 @@ bool StringHelper::only_consonants(const string &str) {
     }
     return true;
 }
+
+bool StringHelper::is_letter(char c) {
+    return StringHelper::is_vowel(c) || StringHelper::is_consonant(c);
+}
+
+bool StringHelper::is_rare_consonant(char c) {
+    return StdVectorHelper::is_in_vector(StringHelper::rare_consonants, c);
+}
+
+bool StringHelper::is_rare_letter(char c) {
+    return StdVectorHelper::is_in_vector(StringHelper::rare_letters, c);
+}
+
+int StringHelper::count_letters(const string &str) {
+    int result = 0;
+    for (char c: str)
+        result += StringHelper::is_letter(c);
+    return result;
+}
+
+bool StringHelper::is_voiceless(char c) {
+    return StdVectorHelper::is_in_vector(StringHelper::voiceless_consonants, c);
+}
+
+bool StringHelper::is_voiced(char c) {
+    return StdVectorHelper::is_in_vector(StringHelper::voiced_consonants, c);
+}

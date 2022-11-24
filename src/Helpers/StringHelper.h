@@ -38,6 +38,19 @@ private:
     // List of consonant letters in russian language
     inline const static vector<char> consonant_letters = {'é', 'ö', 'ê', 'í', 'ã', 'ø', 'ù', 'ç', 'õ', 'ú', 'ô', 'â', 'ï', 'ð', 'ë', 'ä', 'æ', '÷', 'ñ', 'ì', 'ò', 'ü', 'á'};
 
+    // List of rare consonants
+    inline const static vector<char> rare_consonants = {'ô', '÷', 'õ', 'ö', 'ù', 'ø', 'æ'};
+
+    // List of rare letters
+    inline const static vector<char> rare_letters = {'û', 'ú', 'ü', 'é'};
+
+    // List of voiceless consonants
+    inline const static vector<char> voiceless_consonants = {'ï', 'ô', 'ò', 'ñ', 'ø', 'ê', '÷', 'ù', 'ö', 'õ'};
+
+    // List of voices consonants
+    inline const static vector<char> voiced_consonants = {'á', 'â', 'ã', 'ä', 'æ', 'ç', 'é', 'ë', 'ì', 'í', 'ð'};
+
+
 public:
 
     // Char to lower case
@@ -79,11 +92,29 @@ public:
     // Check if a letter is consonant
     static bool is_consonant(char c);
 
+    // Check if is letter
+    static bool is_letter(char c);
+
+    // Check if is a rare consonant
+    static bool is_rare_consonant(char c);
+
+    // Check if is a rare letter
+    static bool is_rare_letter(char c);
+
     // Check if a string consists of only vowel letters
     static bool only_vowels(const string &str);
 
     // Check if a string consists of only consonant letters
     static bool only_consonants(const string &str);
+
+    // Count letters in a string
+    static int count_letters(const string &str);
+
+    // Check if is voiceless
+    static bool is_voiceless(char c);
+
+    // Check if is voiced
+    static bool is_voiced(char c);
 };
 
 #endif //CMAKEPROJECT_STRINGHELPER_H

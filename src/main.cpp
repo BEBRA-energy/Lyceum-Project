@@ -8,17 +8,19 @@
 
 using namespace std;
 
-int compare(){
+int compare() {
     string texts_folder = "../texts";
     vector<map<string, double>> features;
 
-    for(int i=1;i<=4;i++){
+    for (int i = 1; i <= 4; i++) {
         string path = texts_folder + to_string(i);
         Extractor extractor(path);
         features.push_back(extractor.get_all_info());
     }
 
     // to be continued....
+
+    return 0;
 }
 
 int main() {
