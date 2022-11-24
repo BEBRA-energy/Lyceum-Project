@@ -149,9 +149,8 @@ map<string, double> Extractor::get_all_info() {
 //    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
 //    result["letter_statistic"] = this->letter_statistic();
 //    result["vowel_and_consonant_proportions"] = this->vowel_and_consonant_proportions();
-    auto voiceless_and_voiced_consonants = this->voiceless_and_voiced_consonants();
-    result["voiceless_proportion"] = voiceless_and_voiced_consonants[0];
-    result["voiced_proportion"] = voiceless_and_voiced_consonants[1];
+    result["voiceless_proportion"] = this->voiceless();
+    result["voiced_proportion"] = this->voiced();
     result["rare_consonants"] = this->rare_consonants();
     result["rare_letters"] = this->rare_letters();
 
@@ -173,18 +172,22 @@ vector<double> Extractor::letter_statistic() {
     return result;
 }
 
-vector<double> Extractor::vowel_and_consonant_proportions() {
-    int vowel_count = 0, consonant_count = 0;
+double Extractor::consonant() {
+    int result = 0;
     for (const string &word: this->words) {
-        for (char c: word) {
-            vowel_count += StringHelper::is_vowel(c);
-            consonant_count += StringHelper::is_consonant(c);
-        }
+        for (char c: word)
+            result += StringHelper::is_consonant(c);
     }
-    return {
-            double(vowel_count) / double(this->total_letter_count),
-            double(consonant_count) / double(this->total_letter_count)
-    };
+    return double(result) / double(this->total_letter_count);
+}
+
+double Extractor::vowel() {
+    int result = 0;
+    for (const string &word: this->words) {
+        for (char c: word)
+            result += StringHelper::is_vowel(c);
+    }
+    return double(result) / double(this->total_letter_count);
 }
 
 double Extractor::rare_consonants() {
@@ -204,19 +207,24 @@ double Extractor::rare_letters() {
     }
     return double(rare_letters_count) / double(this->total_letter_count);
 }
+//voiceless_and_voiced_consonants
 
-vector<double> Extractor::voiceless_and_voiced_consonants() {
-    int voiceless_count = 0, voiced_count = 0;
+double Extractor::voiced() {
+    int result = 0;
     for (const string &word: this->words) {
-        for (char c: word) {
-            voiceless_count += StringHelper::is_voiceless(c);
-            voiced_count += StringHelper::is_voiced(c);
-        }
+        for (char c: word)
+            result += StringHelper::is_voiced(c);
     }
-    return {
-            double(voiceless_count) / double(this->total_letter_count),
-            double(voiced_count) / double(this->total_letter_count)
-    };
+    return double(result) / double(this->total_letter_count);
+}
+
+double Extractor::voiceless() {
+    int result = 0;
+    for (const string &word: this->words) {
+        for (char c: word)
+            result += StringHelper::is_voiceless(c);
+    }
+    return double(result) / double(this->total_letter_count);
 }
 
 double Extractor::adjectives() {

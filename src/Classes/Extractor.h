@@ -55,8 +55,11 @@ public:
     // Occurrence of each letter
     vector<double> letter_statistic();
 
-    // Proportion of vowel and consonant letters
-    vector<double> vowel_and_consonant_proportions();
+    // Proportion of vowel letters
+    double vowel();
+
+    // Proportion of consonant letters
+    double consonant();
 
     // Proportion of rare consonants
     double rare_consonants();
@@ -64,8 +67,11 @@ public:
     // Proportion of rare letters
     double rare_letters();
 
-    // Proportion of voiceless and voiced consonants
-    vector<double> voiceless_and_voiced_consonants();
+    // Proportion of voiceless consonants
+    double voiceless();
+
+    // Proportion of voiced consonants
+    double voiced();
 
     // Proportion of adjectives in text
     double adjectives();
