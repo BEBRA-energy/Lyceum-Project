@@ -232,16 +232,17 @@ double Extractor::adjectives() {
     for (const string &s: this->words) {
         cnt += StringHelper::is_adjective(s);
     }
-    return double(cnt) / double(this->total_letter_count);
+    return double(cnt) / double(this->words.size());
 }
 
 map<string, double> Extractor::words_popularity() {
+    map<string, int> count;
     map<string, double> result;
     for (const string &s: this->words) {
-        result[s]++;
+        count[s]++;
     }
     for (auto &it: result) {
-        it.second /= double(this->words.size());
+        result[it.first] = double(it.second) / double(this->words.size());
     }
     return result;
 }
