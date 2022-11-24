@@ -1,7 +1,7 @@
 #define LOCAL_DEBUG
 
 #include "Classes/Extractor.h"
-#include "Classes/Main.h"
+#include "Classes/main.h"
 #include "Helpers/VectorHelper.h"
 
 #include <iostream>

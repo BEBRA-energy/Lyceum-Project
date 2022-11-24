@@ -70,6 +70,27 @@ public:
     // Proportion of combinations of three consecutive vowels and three consecutive consonants in a words
     vector<double> three_consecutive_vowels_and_consonants();
 
+    // Proportion of adjectives in text
+    double adjectives();
+
+    // Most used words
+    map<string, double> words_popularity();
+
+    // Consecutive consonants
+    double consecutive_consonants();
+
+    // Consecutive vowels
+    double consecutive_vowels();
+
+    // Alternating_vowel_and_consonant
+    double alternating_vowel_and_consonant();
+
+    // Alternating_consonant_and_vowel
+    double alternating_consonant_and_vowel();
+
+    // Punctuation marks
+    double punctuation_marks();
+
     // Methods
 
     // Getter for sentences field

@@ -163,7 +163,7 @@ vector<double> Extractor::letter_statistic() {
     for (const string &word: this->words) {
         for (char c: word) {
             if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'à';
+            int letter_index = c - 'Ã ';
             letters_count[letter_index]++;
         }
     }
@@ -219,6 +219,7 @@ vector<double> Extractor::voiceless_and_voiced_consonants() {
     };
 }
 
+
 vector<double> Extractor::three_consecutive_vowels_and_consonants() {
     int three_consecutive_vowels = 0, three_consecutive_consonants = 0, possible_combinations_count = 0;
     for (const string &word: this->words) {
@@ -233,4 +234,74 @@ vector<double> Extractor::three_consecutive_vowels_and_consonants() {
             double(three_consecutive_vowels) / double(possible_combinations_count),
             double(three_consecutive_vowels) / double(possible_combinations_count)
     };
+
+double Extractor::adjectives() {
+    int cnt = 0;
+    for (const string &s: this->words) {
+        cnt += StringHelper::is_adjective(s);
+    }
+    return double(cnt) / double(this->total_letter_count);
+}
+
+map<string, double> Extractor::words_popularity() {
+    map<string, double> result;
+    for (const string &s: this->words) {
+        result[s]++;
+    }
+    for (auto &it: result) {
+        it.second /= double(this->words.size());
+    }
+    return result;
+}
+
+double Extractor::consecutive_consonants() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_consonant(s[i]) && StringHelper::is_consonant(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}
+
+double Extractor::consecutive_vowels() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_vowel(s[i]) && StringHelper::is_vowel(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}
+
+double Extractor::alternating_vowel_and_consonant() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_vowel(s[i]) && StringHelper::is_consonant(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}
+
+double Extractor::alternating_consonant_and_vowel() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_consonant(s[i]) && StringHelper::is_vowel(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}
+
+double Extractor::punctuation_marks() {
+    int result = 0;
+    for (char c: this->text) {
+        result += StringHelper::is_punctuation_mark(c);
+    }
+    return double(result) / double(this->sentences.size());
 }
