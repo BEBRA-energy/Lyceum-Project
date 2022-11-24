@@ -241,8 +241,8 @@ map<string, double> Extractor::words_popularity() {
     for (const string &s: this->words) {
         count[s]++;
     }
-    for (auto &it: result) {
-        result[it.first] = double(it.second) / double(this->words.size());
+    for (auto &[word, cnt]: result) {
+        result[word] = double(cnt) / double(this->words.size());
     }
     return result;
 }
