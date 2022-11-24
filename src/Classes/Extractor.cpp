@@ -259,3 +259,25 @@ double Extractor::consecutive_vowels() {
     }
     return double(result) / double(size);
 }
+
+double Extractor::alternating_vowel_and_consonant() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_vowel(s[i]) && StringHelper::is_consonant(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}
+
+double Extractor::alternating_consonant_and_vowel() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_consonant(s[i]) && StringHelper::is_vowel(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}
