@@ -75,20 +75,11 @@ public:
     // Parse sentences into words
     static vector<vector<string>> parse_into_sentences_with_words(const vector<string> &sentences);
 
-    // Getter for conjunctions field
-    static vector<string> get_conjunctions();
-
     // Check if the word is conjunction
     static bool is_conjunction(const string &word);
 
-    // Getter for prepositions field
-    static vector<string> get_prepositions();
-
     // Check if the word is preposition
     static bool is_prepositions(const string &word);
-
-    // Getter for popular letter combinations
-    static vector<string> get_popular_combinations();
 
     // Check if the word is popular letter combination
     static bool is_popular_combination(const string &word);
