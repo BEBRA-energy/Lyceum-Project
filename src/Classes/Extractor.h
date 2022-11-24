@@ -73,6 +73,9 @@ public:
     // Proportion of voiced consonants
     double voiced();
 
+    // Proportion of combinations of three consecutive vowels and three consecutive consonants in a words
+    vector<double> three_consecutive_vowels_and_consonants();
+
     // Proportion of adjectives in text
     double adjectives();
 

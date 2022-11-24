@@ -29,11 +29,8 @@ double Extractor::average_sentence_length() {
 double Extractor::count_conjunctions() {
     int total_conjunctions_count = 0;
 
-    vector<string> conjunctions = StringHelper::get_conjunctions();
-
     for (const string &word: this->words) {
-        if (find(conjunctions.begin(), conjunctions.end(), word) != conjunctions.end())
-            total_conjunctions_count++;
+        total_conjunctions_count += StringHelper::is_conjunction(word);
     }
 
     return double(total_conjunctions_count) / double(this->words.size());
@@ -42,11 +39,8 @@ double Extractor::count_conjunctions() {
 double Extractor::count_prepositions() {
     int total_prepositions_count = 0;
 
-    vector<string> prepositions = StringHelper::get_prepositions();
-
     for (const string &word: this->words) {
-        if (find(prepositions.begin(), prepositions.end(), word) != prepositions.end())
-            total_prepositions_count++;
+        total_prepositions_count += StringHelper::is_prepositions(word);
     }
 
     return double(total_prepositions_count) / double(this->words.size());
@@ -162,7 +156,7 @@ vector<double> Extractor::letter_statistic() {
     for (const string &word: this->words) {
         for (char c: word) {
             if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'à';
+            int letter_index = c - 'Ã ';
             letters_count[letter_index]++;
         }
     }
@@ -227,12 +221,28 @@ double Extractor::voiceless() {
     return double(result) / double(this->total_letter_count);
 }
 
-double Extractor::adjectives() {
-    int cnt = 0;
-    for (const string &s: this->words) {
-        cnt += StringHelper::is_adjective(s);
+vector<double> Extractor::three_consecutive_vowels_and_consonants() {
+    int three_consecutive_vowels = 0, three_consecutive_consonants = 0, possible_combinations_count = 0;
+    for (const string &word: this->words) {
+        for (int i = 0; i < int(word.length()) - 3; i++) {
+            string sub_str = word.substr(i, 3);
+            possible_combinations_count++;
+            three_consecutive_consonants += StringHelper::only_consonants(sub_str);
+            three_consecutive_vowels += StringHelper::only_vowels(sub_str);
+        }
     }
-    return double(cnt) / double(this->words.size());
+    return {
+            double(three_consecutive_vowels) / double(possible_combinations_count),
+            double(three_consecutive_vowels) / double(possible_combinations_count)
+    };
+}
+
+double Extractor::adjectives() {
+    int adjectives_count = 0;
+    for (const string &s: this->words) {
+        adjectives_count += StringHelper::is_adjective(s);
+    }
+    return double(adjectives_count) / double(this->words.size());
 }
 
 map<string, double> Extractor::words_popularity() {
