@@ -218,3 +218,22 @@ vector<double> Extractor::voiceless_and_voiced_consonants() {
             double(voiced_count) / double(this->total_letter_count)
     };
 }
+
+double Extractor::adjectives() {
+    int cnt = 0;
+    for (const string &s: this->words) {
+        cnt += StringHelper::is_adjective(s);
+    }
+    return double(cnt) / double(this->total_letter_count);
+}
+
+map<string, double> Extractor::words_popularity() {
+    map<string, double> result;
+    for (const string &s: this->words) {
+        result[s]++;
+    }
+    for (auto &it: result) {
+        it.second /= double(this->words.size());
+    }
+    return result;
+}

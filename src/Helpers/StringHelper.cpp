@@ -141,3 +141,7 @@ bool StringHelper::is_voiceless(char c) {
 bool StringHelper::is_voiced(char c) {
     return StdVectorHelper::is_in_vector(StringHelper::voiced_consonants, c);
 }
+
+bool StringHelper::is_adjective(const string &str) {
+    return StdVectorHelper::is_in_vector(StringHelper::adjective_ends, str.substr(str.size() - 2, 2)) || StdVectorHelper::is_in_vector(StringHelper::adjective_ends, str.substr(str.size() - 3, 3));
+}
