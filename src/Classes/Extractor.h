@@ -79,11 +79,15 @@ public:
     // Consecutive vowels
     double consecutive_vowels();
 
-    //alternating_vowel_and_consonant
+    // Alternating_vowel_and_consonant
     double alternating_vowel_and_consonant();
 
-    //alternating_consonant_and_vowel
+    // Alternating_consonant_and_vowel
     double alternating_consonant_and_vowel();
+
+    // Punctuation marks
+    double punctuation_marks();
+
     // Methods
 
     // Getter for sentences field
