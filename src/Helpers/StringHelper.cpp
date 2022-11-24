@@ -5,24 +5,19 @@ char StringHelper::to_lower(char c) {
         c += 'a' - 'A';
     else if ('À' <= c && c <= 'ß')
         c += 'à' - 'À';
-
     return c;
 }
 
 string StringHelper::to_lower(const string &str) {
     string result = "";
-
     for (char c: str)
         result += to_lower(c);
-
     return result;
 }
 
 vector<string> StringHelper::parse_into_sentences(const string &str) {
-    string end_of_sentences = ".!?", current_sentence = "";
-
     vector<string> result;
-
+    string end_of_sentences = ".!?", current_sentence = "";
     for (char c: str) {
         if (end_of_sentences.find(c) != string::npos) {
             if (!current_sentence.empty())
@@ -31,7 +26,6 @@ vector<string> StringHelper::parse_into_sentences(const string &str) {
         } else if (!current_sentence.empty() || c != ' ')
             current_sentence += StringHelper::to_lower(c);
     }
-
     return result;
 }
 
@@ -67,36 +61,24 @@ vector<vector<string>> StringHelper::parse_into_sentences_with_words(const vecto
     return result;
 }
 
-vector<string> StringHelper::get_conjunctions() {
-    return StringHelper::conjunctions;
-}
-
-vector<string> StringHelper::get_prepositions() {
-    return StringHelper::prepositions;
-}
-
-vector<string> StringHelper::get_popular_combinations() {
-    return StringHelper::popular_combinations;
-}
-
 bool StringHelper::is_vowel(char c) {
-    return StdVectorHelper::is_in_vector(StringHelper::vowel_letters, c);
+    return StdVectorHelper::is_in_vector(StringHelper::vowel_letters, StringHelper::to_lower(c));
 }
 
 bool StringHelper::is_consonant(char c) {
-    return StdVectorHelper::is_in_vector(StringHelper::consonant_letters, c);
+    return StdVectorHelper::is_in_vector(StringHelper::consonant_letters, StringHelper::to_lower(c));
 }
 
 bool StringHelper::is_conjunction(const string &word) {
-    return StdVectorHelper::is_in_vector(StringHelper::conjunctions, word);
+    return StdVectorHelper::is_in_vector(StringHelper::conjunctions, StringHelper::to_lower(word));
 }
 
 bool StringHelper::is_prepositions(const string &word) {
-    return StdVectorHelper::is_in_vector(StringHelper::prepositions, word);
+    return StdVectorHelper::is_in_vector(StringHelper::prepositions, StringHelper::to_lower(word));
 }
 
 bool StringHelper::is_popular_combination(const string &word) {
-    return StdVectorHelper::is_in_vector(StringHelper::popular_combinations, word);
+    return StdVectorHelper::is_in_vector(StringHelper::popular_combinations, StringHelper::to_lower(word));
 }
 
 bool StringHelper::only_vowels(const string &str) {
@@ -120,11 +102,11 @@ bool StringHelper::is_letter(char c) {
 }
 
 bool StringHelper::is_rare_consonant(char c) {
-    return StdVectorHelper::is_in_vector(StringHelper::rare_consonants, c);
+    return StdVectorHelper::is_in_vector(StringHelper::rare_consonants, StringHelper::to_lower(c));
 }
 
 bool StringHelper::is_rare_letter(char c) {
-    return StdVectorHelper::is_in_vector(StringHelper::rare_letters, c);
+    return StdVectorHelper::is_in_vector(StringHelper::rare_letters, StringHelper::to_lower(c));
 }
 
 int StringHelper::count_letters(const string &str) {
@@ -135,18 +117,24 @@ int StringHelper::count_letters(const string &str) {
 }
 
 bool StringHelper::is_voiceless(char c) {
-    return StdVectorHelper::is_in_vector(StringHelper::voiceless_consonants, c);
+    return StdVectorHelper::is_in_vector(StringHelper::voiceless_consonants, StringHelper::to_lower(c));
 }
 
 bool StringHelper::is_voiced(char c) {
-    return StdVectorHelper::is_in_vector(StringHelper::voiced_consonants, c);
+    return StdVectorHelper::is_in_vector(StringHelper::voiced_consonants, StringHelper::to_lower(c));
 }
 
 bool StringHelper::is_adjective(const string &str) {
-    return StdVectorHelper::is_in_vector(StringHelper::adjective_ends, str.substr(str.size() - 2, 2)) || StdVectorHelper::is_in_vector(StringHelper::adjective_ends, str.substr(str.size() - 3, 3));
+    if (str.size() < 5) return false;
+
+    string two_letter_ending = StringHelper::to_lower(str.substr(int(str.length()) - 2, 2));
+    string three_letter_ending = StringHelper::to_lower(str.substr(int(str.length()) - 3, 3));
+
+    return StdVectorHelper::is_in_vector(StringHelper::adjective_ends, two_letter_ending)
+           || StdVectorHelper::is_in_vector(StringHelper::adjective_ends, three_letter_ending);
 }
 
 bool StringHelper::is_punctuation_mark(char c) {
-    return StdVectorHelper::is_in_vector(StringHelper::punctuation_marks, c);
+    return StdVectorHelper::is_in_vector(StringHelper::punctuation_marks, StringHelper::to_lower(c));
 }
 

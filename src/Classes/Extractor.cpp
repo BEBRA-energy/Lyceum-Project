@@ -29,11 +29,8 @@ double Extractor::average_sentence_length() {
 double Extractor::count_conjunctions() {
     int total_conjunctions_count = 0;
 
-    vector<string> conjunctions = StringHelper::get_conjunctions();
-
     for (const string &word: this->words) {
-        if (find(conjunctions.begin(), conjunctions.end(), word) != conjunctions.end())
-            total_conjunctions_count++;
+        total_conjunctions_count += StringHelper::is_conjunction(word);
     }
 
     return double(total_conjunctions_count) / double(this->words.size());
@@ -42,11 +39,8 @@ double Extractor::count_conjunctions() {
 double Extractor::count_prepositions() {
     int total_prepositions_count = 0;
 
-    vector<string> prepositions = StringHelper::get_prepositions();
-
     for (const string &word: this->words) {
-        if (find(prepositions.begin(), prepositions.end(), word) != prepositions.end())
-            total_prepositions_count++;
+        total_prepositions_count += StringHelper::is_prepositions(word);
     }
 
     return double(total_prepositions_count) / double(this->words.size());
@@ -236,11 +230,11 @@ vector<double> Extractor::three_consecutive_vowels_and_consonants() {
 }
 
 double Extractor::adjectives() {
-    int cnt = 0;
+    int adjectives_count = 0;
     for (const string &s: this->words) {
-        cnt += StringHelper::is_adjective(s);
+        adjectives_count += StringHelper::is_adjective(s);
     }
-    return double(cnt) / double(this->total_letter_count);
+    return double(adjectives_count) / double(this->words.size());
 }
 
 map<string, double> Extractor::words_popularity() {
