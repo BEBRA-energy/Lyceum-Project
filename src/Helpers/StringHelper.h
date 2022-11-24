@@ -15,6 +15,8 @@ private:
     // Hide the constructor
     StringHelper() = default;
 
+    inline const static double average_word_length = 5.28, average_sentence_length = 10.38;
+
     // List of conjunctions in russian language
     inline const static vector<string> conjunctions = {
             "а", "благодаря", "благо", "будто", "вдобавок", "да", "дабы", "даже", "же", "едва", "ежели", "если", "затем", "зато", "зачем", "и", "ибо", "или", "кабы", "как", "когда", "коли", "либо", "ли", "лишь", "нежели", "несмотря", "невзирая", "но", "однако",
@@ -50,6 +52,8 @@ private:
     // List of voices consonants
     inline const static vector<char> voiced_consonants = {'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'л', 'м', 'н', 'р'};
 
+    // List of adjective ends
+    inline const static vector<string> adjective_ends = {"ой", "ей", "ай", "ом", "ый", "яе", "ее", "ое", "им", "ом", "ем", "ая", "ья", "ые", "ие", "ье", "ой", "их", "ых", "ым", "ую", "ью", "ее", "ае", "ому", "ого", "ему", "его"};
 
 public:
 
@@ -115,6 +119,9 @@ public:
 
     // Check if is voiced
     static bool is_voiced(char c);
+
+    //Check if is adjective
+    static bool is_adjective(const string &s);
 };
 
 #endif //CMAKEPROJECT_STRINGHELPER_H

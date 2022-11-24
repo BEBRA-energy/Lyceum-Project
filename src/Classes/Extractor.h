@@ -67,12 +67,16 @@ public:
     // Proportion of voiceless and voiced consonants
     vector<double> voiceless_and_voiced_consonants();
 
+    // Proportion of adjectives in text
+    double adjectives();
+
+    // Most used words
+    map<string, double> words_popularity();
+
     // Methods
 
     // Getter for sentences field
-    vector<string>
-
-    get_sentences();
+    vector<string> get_sentences();
 
     // Applies all functions to text
     map<string, double> get_all_info();
