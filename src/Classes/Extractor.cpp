@@ -163,7 +163,7 @@ vector<double> Extractor::letter_statistic() {
     for (const string &word: this->words) {
         for (char c: word) {
             if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'à';
+            int letter_index = c - 'Ã ';
             letters_count[letter_index]++;
         }
     }
@@ -218,6 +218,22 @@ vector<double> Extractor::voiceless_and_voiced_consonants() {
             double(voiced_count) / double(this->total_letter_count)
     };
 }
+
+
+vector<double> Extractor::three_consecutive_vowels_and_consonants() {
+    int three_consecutive_vowels = 0, three_consecutive_consonants = 0, possible_combinations_count = 0;
+    for (const string &word: this->words) {
+        for (int i = 0; i < int(word.length()) - 3; i++) {
+            string sub_str = word.substr(i, 3);
+            possible_combinations_count++;
+            three_consecutive_consonants += StringHelper::only_consonants(sub_str);
+            three_consecutive_vowels += StringHelper::only_vowels(sub_str);
+        }
+    }
+    return {
+            double(three_consecutive_vowels) / double(possible_combinations_count),
+            double(three_consecutive_vowels) / double(possible_combinations_count)
+    };
 
 double Extractor::adjectives() {
     int cnt = 0;
