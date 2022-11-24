@@ -5,6 +5,8 @@ Extractor::Extractor(const string &path) {
     ifstream fin(this->path);
     getline(fin, this->text);
 
+    cout << this->path << '\n';
+
     this->sentences = StringHelper::parse_into_sentences(this->text);
     this->words = StringHelper::parse_into_words(this->text);
     this->sentences_with_words = StringHelper::parse_into_sentences_with_words(this->sentences);
@@ -143,6 +145,15 @@ map<string, double> Extractor::get_all_info() {
     result["avg_word_length"] = this->average_word_length();
     result["avg_sentence_length"] = this->average_sentence_length();
     result["popular_combinations_proportion"] = this->popular_letter_combination();
+//    result["definite_contiguous_letters"] = this->definite_contiguous_letters();
+//    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
+//    result["letter_statistic"] = this->letter_statistic();
+//    result["vowel_and_consonant_proportions"] = this->vowel_and_consonant_proportions();
+    auto voiceless_and_voiced_consonants = this->voiceless_and_voiced_consonants();
+    result["voiceless_proportion"] = voiceless_and_voiced_consonants[0];
+    result["voiced_proportion"] = voiceless_and_voiced_consonants[1];
+    result["rare_consonants"] = this->rare_consonants();
+    result["rare_letters"] = this->rare_letters();
 
     return result;
 }

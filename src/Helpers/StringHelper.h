@@ -15,6 +15,8 @@ private:
     // Hide the constructor
     StringHelper() = default;
 
+    inline const static double average_word_length = 5.28, average_sentence_length = 10.38;
+
     // List of conjunctions in russian language
     inline const static vector<string> conjunctions = {
             "а", "благодаря", "благо", "будто", "вдобавок", "да", "дабы", "даже", "же", "едва", "ежели", "если", "затем", "зато", "зачем", "и", "ибо", "или", "кабы", "как", "когда", "коли", "либо", "ли", "лишь", "нежели", "несмотря", "невзирая", "но", "однако",
