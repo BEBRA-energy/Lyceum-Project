@@ -237,3 +237,25 @@ map<string, double> Extractor::words_popularity() {
     }
     return result;
 }
+
+double Extractor::consecutive_consonants() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_consonant(s[i]) && StringHelper::is_consonant(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}
+
+double Extractor::consecutive_vowels() {
+    int size = 0, result = 0;
+    for (string s: this->words) {
+        size += s.size() - 1;
+        for (int i = 1; i < s.size(); i++) {
+            result += StringHelper::is_vowel(s[i]) && StringHelper::is_vowel(s[i - 1]);
+        }
+    }
+    return double(result) / double(size);
+}

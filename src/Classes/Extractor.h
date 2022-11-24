@@ -73,6 +73,12 @@ public:
     // Most used words
     map<string, double> words_popularity();
 
+    // Consecutive consonants
+    double consecutive_consonants();
+
+    // Consecutive vowels
+    double consecutive_vowels();
+
     // Methods
 
     // Getter for sentences field
