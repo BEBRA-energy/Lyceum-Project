@@ -17,7 +17,7 @@ int compare() {
     auto features = m.get_features();
 
     fout << "######################################################" << '\n';
-    for (auto file: features) {
+    for (const auto &file: features) {
         for (auto[title, value]: file) {
             fout << title << ":  ";
             fout.width(50 - title.length());
