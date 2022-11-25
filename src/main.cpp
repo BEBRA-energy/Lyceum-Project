@@ -10,28 +10,27 @@
 
 using namespace std;
 
-//void print() {
-//    ofstream fout("features.txt");
-//    Main m("../texts/");
-//    auto features = m.get_features();
-//    fout << "######################################################" << '\n';
-//    for (const auto &file: features) {
-//        for (auto[title, value]: file) {
-//            fout << title << ":  ";
-//            fout.width(50 - int(title.length()));
-//            fout << fixed << setprecision(5) << value << '\n';
-//        }
-//        fout << "######################################################" << '\n';
-//    }
-//}
-const string TEXT_FOLDER ="../texts/";
+void print() {
+   ofstream fout("features.txt");
+   Main m("../texts/");
+   auto features = m.get_features();
+   fout << "######################################################" << '\n';
+   for (const auto &file: features) {
+       for (auto[title, value]: file) {
+           fout << title << ":  ";
+           fout.width(50 - int(title.length()));
+           fout << fixed << setprecision(5) << value << '\n';
+       }
+       fout << "######################################################" << '\n';
+   }
+}
 
-void compare() {
+void compare(const string text_folder) {
     ofstream fout("features.txt");
 
     vector<map<string, double>> features;
     for (int i = 1; i <= 4; i++) {
-        string path = TEXT_FOLDER +to_string(i) + ".txt";
+        string path = text_folder + to_string(i) + ".txt";
         Extractor extractor(path);
         features.push_back(extractor.get_all_info());
     }
@@ -59,8 +58,8 @@ void compare() {
 
 int main() {
     setlocale(LC_ALL, "ru");
-
-    //print();
-    compare();
+    const string TEXT_FOLDER = "../texts/";
+    print();
+    compare(TEXT_FOLDER);
     return 0;
 }
