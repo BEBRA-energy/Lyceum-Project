@@ -37,6 +37,8 @@ map<string, double> Extractor::get_all_info() {
     result["alternating_vowel_and_consonant"] = this->alternating_vowel_and_consonant();
     result["alternating_consonant_and_vowel"] = this->alternating_consonant_and_vowel();
     result["punctuation_marks"] = this->punctuation_marks_proportion();
+    result["soft"] = this->soft_proportion();
+    result["hard"] = this->hard_proportion();
 
     return result;
 }
@@ -324,10 +326,10 @@ double Extractor::soft_proportion() {
         for (int i = 1; i < word.size(); i++) {
             consonant_count += StringHelper::is_consonant(word[i - 1]);
             soft_count += !StringHelper::is_soft(word[i - 1])
-                    && !StringHelper::is_hard(word[i - 1])
-                    && StringHelper::is_softener(word[i]);
+                          && !StringHelper::is_hard(word[i - 1])
+                          && StringHelper::is_softener(word[i]);
         }
-        for(char c:word) {
+        for (char c: word) {
             soft_count += StringHelper::is_soft(c);
         }
     }
@@ -345,7 +347,7 @@ double Extractor::hard_proportion() {
                           && !StringHelper::is_soft(word[i - 1])
                           && !StringHelper::is_softener(word[i]);
         }
-        for(char c:word) {
+        for (char c: word) {
             hard_count += StringHelper::is_hard(c);
         }
     }
