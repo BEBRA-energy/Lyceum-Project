@@ -24,7 +24,13 @@ map<string, double> Extractor::get_all_info() {
     result["popular_combinations"] = this->popular_letter_combination();
 //    result["definite_contiguous_letters"] = this->definite_contiguous_letters();
 //    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
-//    result["letter_statistic"] = this->letter_statistic();
+
+    vector<double> letter_statistic = this->letter_statistic();
+
+    for(int i = 0;i<letter_statistic.size();i++){
+        result[to_string(i)] = letter_statistic[i];
+    }
+
     result["vowel"] = this->vowel_proportion();
     result["consonant"] = this->consonant_proportion();
     result["rare_consonants"] = this->rare_consonants();
@@ -166,7 +172,7 @@ vector<double> Extractor::letter_statistic() {
     for (const string &word: this->words) {
         for (char c: word) {
             if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'à';
+            int letter_index = c - 'ï¿½';
             letters_count[letter_index]++;
         }
     }
