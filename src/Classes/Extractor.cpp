@@ -301,7 +301,7 @@ double Extractor::alternating_consonant_and_vowel() {
     return double(result) / double(size);
 }
 
-double Extractor::punctuation_marks() {
+double Extractor::punctuation_marks_proportion() {
     int result = 0;
     for (char c: this->text) {
         result += StringHelper::is_punctuation_mark(c);

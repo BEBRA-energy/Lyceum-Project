@@ -95,7 +95,7 @@ public:
     double alternating_consonant_and_vowel();
 
     // Punctuation marks
-    double punctuation_marks();
+    double punctuation_marks_proportion();
 
     // Proportion of soft consonants
     double soft_proportion();
