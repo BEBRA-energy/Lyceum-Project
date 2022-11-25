@@ -58,6 +58,15 @@ private:
     // List of punctuation marks
     inline const static vector<char> punctuation_marks = {',', '-', ':', ';'};
 
+    // List of softening letters
+    inline const static vector<char> softeners = {'¸', 'å', 'ÿ', 'è', 'ü', 'þ'};
+
+    // List of soft letters
+    inline const static vector<char> soft_letters = {'é', 'ù', '÷'};
+
+    // List of hard letters
+    inline const static  vector<char> hard_letters = {'æ', 'ø', 'ö'};
+
 public:
 
     // Char to lower case
@@ -119,6 +128,15 @@ public:
 
     //Check if is punctuation mark
     static bool is_punctuation_mark(char c);
+
+    // Check if hard letter
+    static bool is_hard(char c);
+
+    // Check if soft letter
+    static bool is_soft(char c);
+
+    // Check if softener
+    static bool is_softener(char c);
 };
 
 #endif //CMAKEPROJECT_STRINGHELPER_H

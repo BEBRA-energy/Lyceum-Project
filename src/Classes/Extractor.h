@@ -97,6 +97,12 @@ public:
     // Punctuation marks
     double punctuation_marks();
 
+    // Proportion of soft consonants
+    double soft();
+
+    // Proportion of hard consonants
+    double hard();
+
     // Methods
 
     // Getter for sentences field

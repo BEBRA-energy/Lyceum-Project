@@ -156,7 +156,7 @@ vector<double> Extractor::letter_statistic() {
     for (const string &word: this->words) {
         for (char c: word) {
             if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'à';
+            int letter_index = c - 'а';
             letters_count[letter_index]++;
         }
     }
@@ -307,4 +307,39 @@ double Extractor::punctuation_marks() {
         result += StringHelper::is_punctuation_mark(c);
     }
     return double(result) / double(this->sentences.size());
+}
+
+double Extractor::soft() {
+    int soft_count = 0;
+    int consonant_count = 0;
+    for (string word: this->words) {
+        for (int i = 1; i < word.size(); i++) {
+            consonant_count += StringHelper::is_consonant(word[i - 1]);
+            soft_count += !StringHelper::is_soft(word[i - 1])
+                    && !StringHelper::is_hard(word[i - 1])
+                    && StringHelper::is_softener(word[i]);
+        }
+        for(char c:word) {
+            soft_count += StringHelper::is_soft(c);
+        }
+    }
+    return double(soft_count) / double(consonant_count);
+}
+
+
+double Extractor::hard() {
+    int hard_count = 0;
+    int consonant_count = 0;
+    for (string word: this->words) {
+        for (int i = 1; i < word.size(); i++) {
+            consonant_count += StringHelper::is_consonant(word[i - 1]);
+            hard_count += !StringHelper::is_hard(word[i - 1])
+                          && !StringHelper::is_soft(word[i - 1])
+                          && !StringHelper::is_softener(word[i]);
+        }
+        for(char c:word) {
+            hard_count += StringHelper::is_hard(c);
+        }
+    }
+    return double(hard_count) / double(consonant_count);
 }
