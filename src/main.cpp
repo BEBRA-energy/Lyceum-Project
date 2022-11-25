@@ -16,14 +16,14 @@ void compare() {
 
     auto features = m.get_features();
 
-    fout << "######################################################" << '\n';
+//    fout << "######################################################" << '\n';
     for (const auto &file: features) {
         for (auto[title, value]: file) {
-            fout << title << ":  ";
-            fout.width(50 - title.length());
-            fout << fixed << setprecision(5) << value << '\n';
+//            fout << title << ":  ";
+//            fout.width(50 - title.length());
+//            fout << fixed << setprecision(5) << value << '\n';
         }
-        fout << "######################################################" << '\n';
+//        fout << "######################################################" << '\n';
     }
     
     vector<vector<double>> values_only;
