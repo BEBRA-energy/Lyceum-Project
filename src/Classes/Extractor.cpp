@@ -25,11 +25,11 @@ map<string, double> Extractor::get_all_info() {
 //    result["definite_contiguous_letters"] = this->definite_contiguous_letters();
 //    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
 
-    vector<double> letter_statistic = this->letter_statistic();
+    //vector<double> letter_statistic = this->letter_statistic();
 
-    for(int i = 0;i<letter_statistic.size();i++){
-        result[to_string(i)] = letter_statistic[i];
-    }
+    //for (int i = 0; i < letter_statistic.size(); i++) {
+    //    result[to_string(i)] = letter_statistic[i];
+    //}
 
     result["vowel"] = this->vowel_proportion();
     result["consonant"] = this->consonant_proportion();
@@ -40,7 +40,7 @@ map<string, double> Extractor::get_all_info() {
     result["adjectives"] = this->adjectives_proportion();
     result["consecutive_consonants"] = this->consecutive_consonants_proportions();
     result["consecutive_vowels"] = this->consecutive_vowels_proportions();
-    result["alternating_vowel_and_consonant"] = this->alternating_vowel_and_consonant();
+    //result["alternating_vowel_and_consonant"] = this->alternating_vowel_and_consonant();
     result["alternating_consonant_and_vowel"] = this->alternating_consonant_and_vowel();
     result["punctuation_marks"] = this->punctuation_marks_proportion();
     result["soft"] = this->soft_proportion();
@@ -172,7 +172,7 @@ vector<double> Extractor::letter_statistic() {
     for (const string &word: this->words) {
         for (char c: word) {
             if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - '�';
+            int letter_index = c - 'а';
             letters_count[letter_index]++;
         }
     }
