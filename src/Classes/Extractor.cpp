@@ -13,6 +13,34 @@ Extractor::Extractor(const string &path) {
     this->total_letter_count = StringHelper::count_letters(this->text);
 }
 
+map<string, double> Extractor::get_all_info() {
+    map<string, double> result;
+
+    result["conjunctions"] = this->conjunctions_proportions();
+    result["prepositions"] = this->prepositions_proportions();
+    result["pronouns"] = this->pronouns_proportion();
+    result["avg_word_length"] = this->average_word_length();
+    result["avg_sentence_length"] = this->average_sentence_length();
+    result["popular_combinations"] = this->popular_letter_combination();
+//    result["definite_contiguous_letters"] = this->definite_contiguous_letters();
+//    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
+//    result["letter_statistic"] = this->letter_statistic();
+    result["vowel"] = this->vowel_proportion();
+    result["consonant"] = this->consonant_proportion();
+    result["rare_consonants"] = this->rare_consonants();
+    result["rare_letters"] = this->rare_letters();
+    result["voiceless"] = this->voiceless_proportion();
+    result["voiced"] = this->voiced_proportion();
+    result["adjectives"] = this->adjectives_proportion();
+    result["consecutive_consonants"] = this->consecutive_consonants_proportions();
+    result["consecutive_vowels"] = this->consecutive_vowels_proportions();
+    result["alternating_vowel_and_consonant"] = this->alternating_vowel_and_consonant();
+    result["alternating_consonant_and_vowel"] = this->alternating_consonant_and_vowel();
+    result["punctuation_marks"] = this->punctuation_marks_proportion();
+
+    return result;
+}
+
 double Extractor::average_word_length() {
     int total_text_length = 0;
 
@@ -26,24 +54,28 @@ double Extractor::average_sentence_length() {
     return double(this->words.size()) / double(this->sentences.size());
 }
 
-double Extractor::count_conjunctions() {
-    int total_conjunctions_count = 0;
-
+double Extractor::conjunctions_proportions() {
+    int conjunctions_count = 0;
     for (const string &word: this->words) {
-        total_conjunctions_count += StringHelper::is_conjunction(word);
+        conjunctions_count += StringHelper::is_conjunction(word);
     }
-
-    return double(total_conjunctions_count) / double(this->words.size());
+    return double(conjunctions_count) / double(this->words.size());
 }
 
-double Extractor::count_prepositions() {
-    int total_prepositions_count = 0;
-
+double Extractor::prepositions_proportions() {
+    int prepositions_count = 0;
     for (const string &word: this->words) {
-        total_prepositions_count += StringHelper::is_prepositions(word);
+        prepositions_count += StringHelper::is_prepositions(word);
     }
+    return double(prepositions_count) / double(this->words.size());
+}
 
-    return double(total_prepositions_count) / double(this->words.size());
+double Extractor::pronouns_proportion() {
+    int pronouns_count = 0;
+    for (const string &word: this->words) {
+        pronouns_count += StringHelper::is_pronoun(word);
+    }
+    return double(pronouns_count) / double(this->total_letter_count);
 }
 
 double Extractor::popular_letter_combination() {
@@ -131,32 +163,12 @@ vector<double> Extractor::vowel_end_and_consonant_beginning() {
     return result;
 }
 
-map<string, double> Extractor::get_all_info() {
-    map<string, double> result;
-
-    result["conjunctions"] = this->count_conjunctions();
-    result["prepositions"] = this->count_prepositions();
-    result["avg_word_length"] = this->average_word_length();
-    result["avg_sentence_length"] = this->average_sentence_length();
-    result["popular_combinations_proportion"] = this->popular_letter_combination();
-//    result["definite_contiguous_letters"] = this->definite_contiguous_letters();
-//    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
-//    result["letter_statistic"] = this->letter_statistic();
-//    result["vowel_and_consonant_proportions"] = this->vowel_and_consonant_proportions();
-    result["voiceless_proportion"] = this->voiceless();
-    result["voiced_proportion"] = this->voiced();
-    result["rare_consonants"] = this->rare_consonants();
-    result["rare_letters"] = this->rare_letters();
-
-    return result;
-}
-
 vector<double> Extractor::letter_statistic() {
     vector<int> letters_count(33);
     for (const string &word: this->words) {
         for (char c: word) {
             if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'Ã ';
+            int letter_index = c - 'à';
             letters_count[letter_index]++;
         }
     }
@@ -166,7 +178,7 @@ vector<double> Extractor::letter_statistic() {
     return result;
 }
 
-double Extractor::consonant() {
+double Extractor::consonant_proportion() {
     int result = 0;
     for (const string &word: this->words) {
         for (char c: word)
@@ -175,7 +187,7 @@ double Extractor::consonant() {
     return double(result) / double(this->total_letter_count);
 }
 
-double Extractor::vowel() {
+double Extractor::vowel_proportion() {
     int result = 0;
     for (const string &word: this->words) {
         for (char c: word)
@@ -203,7 +215,7 @@ double Extractor::rare_letters() {
 }
 //voiceless_and_voiced_consonants
 
-double Extractor::voiced() {
+double Extractor::voiced_proportion() {
     int result = 0;
     for (const string &word: this->words) {
         for (char c: word)
@@ -212,7 +224,7 @@ double Extractor::voiced() {
     return double(result) / double(this->total_letter_count);
 }
 
-double Extractor::voiceless() {
+double Extractor::voiceless_proportion() {
     int result = 0;
     for (const string &word: this->words) {
         for (char c: word)
@@ -237,7 +249,7 @@ vector<double> Extractor::three_consecutive_vowels_and_consonants() {
     };
 }
 
-double Extractor::adjectives() {
+double Extractor::adjectives_proportion() {
     int adjectives_count = 0;
     for (const string &s: this->words) {
         adjectives_count += StringHelper::is_adjective(s);
@@ -257,7 +269,7 @@ map<string, double> Extractor::words_popularity() {
     return result;
 }
 
-double Extractor::consecutive_consonants() {
+double Extractor::consecutive_consonants_proportions() {
     int size = 0, result = 0;
     for (string s: this->words) {
         size += s.size() - 1;
@@ -268,7 +280,7 @@ double Extractor::consecutive_consonants() {
     return double(result) / double(size);
 }
 
-double Extractor::consecutive_vowels() {
+double Extractor::consecutive_vowels_proportions() {
     int size = 0, result = 0;
     for (string s: this->words) {
         size += s.size() - 1;
@@ -291,17 +303,17 @@ double Extractor::alternating_vowel_and_consonant() {
 }
 
 double Extractor::alternating_consonant_and_vowel() {
-    int size = 0, result = 0;
+    int possible_combinations_count = 0, result = 0;
     for (string s: this->words) {
-        size += s.size() - 1;
+        possible_combinations_count += int(s.size()) - 1;
         for (int i = 1; i < s.size(); i++) {
             result += StringHelper::is_consonant(s[i]) && StringHelper::is_vowel(s[i - 1]);
         }
     }
-    return double(result) / double(size);
+    return double(result) / double(possible_combinations_count);
 }
 
-double Extractor::punctuation_marks() {
+double Extractor::punctuation_marks_proportion() {
     int result = 0;
     for (char c: this->text) {
         result += StringHelper::is_punctuation_mark(c);
