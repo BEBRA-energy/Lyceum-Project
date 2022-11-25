@@ -98,10 +98,10 @@ public:
     double punctuation_marks();
 
     // Proportion of soft consonants
-    double soft();
+    double soft_proportion();
 
     // Proportion of hard consonants
-    double hard();
+    double hard_proportion();
 
     // Methods
 

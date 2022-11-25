@@ -309,7 +309,7 @@ double Extractor::punctuation_marks() {
     return double(result) / double(this->sentences.size());
 }
 
-double Extractor::soft() {
+double Extractor::soft_proportion() {
     int soft_count = 0;
     int consonant_count = 0;
     for (string word: this->words) {
@@ -327,7 +327,7 @@ double Extractor::soft() {
 }
 
 
-double Extractor::hard() {
+double Extractor::hard_proportion() {
     int hard_count = 0;
     int consonant_count = 0;
     for (string word: this->words) {
