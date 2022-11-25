@@ -35,13 +35,13 @@ void compare() {
     }
 
     int num_texts = values_only.size();
-    ofstream fout("output.txt");
+    ofstream res_stream("output.txt");
     for(int i =1;i<=num_texts;i++){
         vector<double> i_vector_similarities;
         for(int j = 1;j<=num_texts;j++){
             vector<double> text1 = values_only[i];
             vector<double> text2 = values_only[j];
-            fout<<"text "<<i<<" and "<<j<<VectorHelper::cosine_similarity(text1, text2)<<endl;
+            res_stream<<"text "<<i<<" and "<<j<<VectorHelper::cosine_similarity(text1, text2)<<endl;
         }
     } 
 }
