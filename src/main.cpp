@@ -39,7 +39,6 @@ int compare(){
         }
         //similarities.push_back(i_vector_similarities);
     } 
-   f 
 }
 
 int main() {
