@@ -17,6 +17,6 @@ double VectorHelper::euclidian_norm(const vector<double> &a) {
 }
 
 double VectorHelper::cosine_similarity(const vector<double> &a, const vector<double> &b) {
-    double similarity = dot_product(a, b) / euclidian_norm(a) * euclidian_norm(b);
+    double similarity = dot_product(a, b) / (euclidian_norm(a) * euclidian_norm(b));
     return similarity;
 }

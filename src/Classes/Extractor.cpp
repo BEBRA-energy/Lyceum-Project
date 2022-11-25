@@ -24,7 +24,13 @@ map<string, double> Extractor::get_all_info() {
     result["popular_combinations"] = this->popular_letter_combination();
 //    result["definite_contiguous_letters"] = this->definite_contiguous_letters();
 //    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
-//    result["letter_statistic"] = this->letter_statistic();
+
+    map<char, double> letter_statistic = this->letter_statistic();
+
+    for (auto[letter, proportion]: letter_statistic) {
+        result["letter_" + to_string(letter)] = proportion;
+    }
+
     result["vowel"] = this->vowel_proportion();
     result["consonant"] = this->consonant_proportion();
     result["rare_consonants"] = this->rare_consonants();
@@ -34,9 +40,11 @@ map<string, double> Extractor::get_all_info() {
     result["adjectives"] = this->adjectives_proportion();
     result["consecutive_consonants"] = this->consecutive_consonants_proportions();
     result["consecutive_vowels"] = this->consecutive_vowels_proportions();
-    result["alternating_vowel_and_consonant"] = this->alternating_vowel_and_consonant();
+    //result["alternating_vowel_and_consonant"] = this->alternating_vowel_and_consonant();
     result["alternating_consonant_and_vowel"] = this->alternating_consonant_and_vowel();
     result["punctuation_marks"] = this->punctuation_marks_proportion();
+    result["soft"] = this->soft_proportion();
+    result["hard"] = this->hard_proportion();
 
     return result;
 }
@@ -102,10 +110,6 @@ double Extractor::popular_letter_combination() {
     return double(combinations_length) / double(this->total_letter_count);
 }
 
-vector<string> Extractor::get_sentences() {
-    return this->sentences;
-}
-
 vector<double> Extractor::definite_contiguous_letters() {
     vector<int> combinations_count(4);
 
@@ -163,18 +167,19 @@ vector<double> Extractor::vowel_end_and_consonant_beginning() {
     return result;
 }
 
-vector<double> Extractor::letter_statistic() {
-    vector<int> letters_count(33);
+map<char, double> Extractor::letter_statistic() {
+    map<char, int> letters_count;
     for (const string &word: this->words) {
-        for (char c: word) {
-            if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'à';
-            letters_count[letter_index]++;
+        for (char letter: word) {
+            if (!StringHelper::is_letter(letter)) continue;
+            letters_count[letter]++;
         }
     }
-    vector<double> result(33);
-    for (int i = 0; i < 33; i++)
-        result[i] = double(letters_count[i]) / double(this->total_letter_count);
+
+    map<char, double> result;
+    for (auto[letter, count]: letters_count) {
+        result[letter] = double(count) / double(this->total_letter_count);
+    }
     return result;
 }
 
@@ -328,10 +333,10 @@ double Extractor::soft_proportion() {
         for (int i = 1; i < word.size(); i++) {
             consonant_count += StringHelper::is_consonant(word[i - 1]);
             soft_count += !StringHelper::is_soft(word[i - 1])
-                    && !StringHelper::is_hard(word[i - 1])
-                    && StringHelper::is_softener(word[i]);
+                          && !StringHelper::is_hard(word[i - 1])
+                          && StringHelper::is_softener(word[i]);
         }
-        for(char c:word) {
+        for (char c: word) {
             soft_count += StringHelper::is_soft(c);
         }
     }
@@ -349,7 +354,7 @@ double Extractor::hard_proportion() {
                           && !StringHelper::is_soft(word[i - 1])
                           && !StringHelper::is_softener(word[i]);
         }
-        for(char c:word) {
+        for (char c: word) {
             hard_count += StringHelper::is_hard(c);
         }
     }

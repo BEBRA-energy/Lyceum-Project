@@ -1,37 +1,36 @@
-#define LOCAL_DEBUG
-
-#include "Classes/Extractor.h"
-#include "Classes/main.h"
-#include "Helpers/VectorHelper.h"
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 
+#include "Classes/Comparator.h"
+
 using namespace std;
-
-int compare() {
-    ofstream fout("output.txt");
-    Main m("../texts/");
-
-    auto features = m.get_features();
-
-    fout << "######################################################" << '\n';
-    for (const auto &file: features) {
-        for (auto[title, value]: file) {
-            fout << title << ":  ";
-            fout.width(50 - title.length());
-            fout << fixed << setprecision(5) << value << '\n';
-        }
-        fout << "######################################################" << '\n';
-    }
-
-    return 0;
-}
 
 int main() {
     setlocale(LC_ALL, "ru");
 
-    compare();
+    const string TEXT_FOLDER = "../texts";
+    const int FILES_COUNT = 4;
+    const int LARGE_FILES = 1;
+
+    vector<string> files(FILES_COUNT);
+
+    for (int i = 0; i < FILES_COUNT; i++) {
+        string file_name = to_string(i + 1) + (LARGE_FILES ? "L" : "") + ".txt";
+        files[i] = file_name;
+    }
+
+    Comparator comp(TEXT_FOLDER, files);
+
+    vector<vector<double>> result = comp.compare();
+
+    for (int i = 0; i < FILES_COUNT; i++) {
+        for (int j = 0; j < FILES_COUNT; j++) {
+            cout.width(7);
+            cout << fixed << setprecision(2) << result[i][j] * 100 << ' ';
+        }
+        cout << '\n';
+    }
+
     return 0;
 }
