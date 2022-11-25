@@ -150,3 +150,7 @@ bool StringHelper::is_softener(char c) {
     return StdVectorHelper::is_in_vector(StringHelper::softeners, StringHelper::to_lower(c))
 }
 
+bool StringHelper::is_pronoun(const string &word) {
+    return StdVectorHelper::is_in_vector(StringHelper::pronouns, StringHelper::to_lower(word));
+}
+
