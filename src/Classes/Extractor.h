@@ -57,7 +57,7 @@ public:
     vector<double> vowel_end_and_consonant_beginning();
 
     // Occurrence of each letter
-    vector<double> letter_statistic();
+    map<char, double> letter_statistic();
 
     // Proportion of vowel letters
     double vowel_proportion();

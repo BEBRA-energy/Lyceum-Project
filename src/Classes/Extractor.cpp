@@ -25,11 +25,11 @@ map<string, double> Extractor::get_all_info() {
 //    result["definite_contiguous_letters"] = this->definite_contiguous_letters();
 //    result["vowel_end_and_consonant_beginning"] = this->vowel_end_and_consonant_beginning();
 
-    //vector<double> letter_statistic = this->letter_statistic();
+    map<char, double> letter_statistic = this->letter_statistic();
 
-    //for (int i = 0; i < letter_statistic.size(); i++) {
-    //    result[to_string(i)] = letter_statistic[i];
-    //}
+    for (auto[letter, proportion]: letter_statistic) {
+        result["letter_" + to_string(letter)] = proportion;
+    }
 
     result["vowel"] = this->vowel_proportion();
     result["consonant"] = this->consonant_proportion();
@@ -167,18 +167,19 @@ vector<double> Extractor::vowel_end_and_consonant_beginning() {
     return result;
 }
 
-vector<double> Extractor::letter_statistic() {
-    vector<int> letters_count(33);
+map<char, double> Extractor::letter_statistic() {
+    map<char, int> letters_count;
     for (const string &word: this->words) {
-        for (char c: word) {
-            if (!StringHelper::is_letter(c)) continue;
-            int letter_index = c - 'а';
-            letters_count[letter_index]++;
+        for (char letter: word) {
+            if (!StringHelper::is_letter(letter)) continue;
+            letters_count[letter]++;
         }
     }
-    vector<double> result(33);
-    for (int i = 0; i < 33; i++)
-        result[i] = double(letters_count[i]) / double(this->total_letter_count);
+
+    map<char, double> result;
+    for (auto[letter, count]: letters_count) {
+        result[letter] = double(count) / double(this->total_letter_count);
+    }
     return result;
 }
 
