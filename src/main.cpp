@@ -24,11 +24,18 @@ using namespace std;
 //        fout << "######################################################" << '\n';
 //    }
 //}
+const string TEXT_FOLDER ="../texts/";
 
 void compare() {
     ofstream fout("features.txt");
-    Main m("../texts/");
-    auto features = m.get_features();
+
+    vector<map<string, double>> features;
+    for (int i = 1; i <= 4; i++) {
+        string path = TEXT_FOLDER +to_string(i) + ".txt";
+        Extractor extractor(path);
+        features.push_back(extractor.get_all_info());
+    }
+
     vector<vector<double>> values_only;
     for (map<string, double> text_features: features) {
         vector<double> text_values;
