@@ -102,10 +102,6 @@ double Extractor::popular_letter_combination() {
     return double(combinations_length) / double(this->total_letter_count);
 }
 
-vector<string> Extractor::get_sentences() {
-    return this->sentences;
-}
-
 vector<double> Extractor::definite_contiguous_letters() {
     vector<int> combinations_count(4);
 
