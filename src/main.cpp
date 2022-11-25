@@ -1,21 +1,29 @@
 #define LOCAL_DEBUG
 
 #include "Classes/Extractor.h"
+#include "Classes/main.h"
 #include "Helpers/VectorHelper.h"
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 
 using namespace std;
 
-int compare(){
-    string texts_folder = "../texts";
-    vector<map<string, double>> features;
+void compare() {
+    ofstream fout("output.txt");
+    Main m("../texts/");
 
-    for(int i=1;i<=4;i++){
-        string path = texts_folder + to_string(i);
-        Extractor extractor(path);
-        features.push_back(extractor.get_all_info());
+    auto features = m.get_features();
+
+    fout << "######################################################" << '\n';
+    for (const auto &file: features) {
+        for (auto[title, value]: file) {
+            fout << title << ":  ";
+            fout.width(50 - title.length());
+            fout << fixed << setprecision(5) << value << '\n';
+        }
+        fout << "######################################################" << '\n';
     }
     
     vector<vector<double>> values_only;
@@ -28,32 +36,19 @@ int compare(){
 
     int num_texts = values_only.size();
     ofstream fout("output.txt");
-    //vector<vector<double>> similarities;
     for(int i =1;i<=num_texts;i++){
         vector<double> i_vector_similarities;
         for(int j = 1;j<=num_texts;j++){
             vector<double> text1 = values_only[i];
             vector<double> text2 = values_only[j];
-            //i_vector_similarities.push_back(VectorHelper::cosine_similarity(text1, text2));
             fout<<"text "<<i<<" and "<<j<<VectorHelper::cosine_similarity(text1, text2)<<endl;
         }
-        //similarities.push_back(i_vector_similarities);
     } 
 }
 
 int main() {
     setlocale(LC_ALL, "ru");
 
-    Extractor ex("../texts/1.txt");
-
-    auto res = ex.get_sentences();
-
-    ofstream fout("output.txt");
-
-    fout << res.size() << '\n';
-
-    for (const auto &el: res)
-        fout << el << '\n';
-
+    compare();
     return 0;
 }
