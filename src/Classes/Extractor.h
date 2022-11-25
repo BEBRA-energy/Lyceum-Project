@@ -1,3 +1,4 @@
+// made by Matteo Bunos
 #ifndef CMAKEPROJECT_EXTRACTOR_H
 #define CMAKEPROJECT_EXTRACTOR_H
 
@@ -31,11 +32,14 @@ public:
 
     // Features
 
-    // Conjunctions count
-    double count_conjunctions();
+    // Proportion of conjunctions
+    double conjunctions_proportions();
 
-    // Preposition count
-    double count_prepositions();
+    // Proportion of preposition
+    double prepositions_proportions();
+
+    // Proportion of pronouns
+    double pronouns_proportion();
 
     // Average word length
     double average_word_length();
@@ -56,10 +60,10 @@ public:
     vector<double> letter_statistic();
 
     // Proportion of vowel letters
-    double vowel();
+    double vowel_proportion();
 
     // Proportion of consonant letters
-    double consonant();
+    double consonant_proportion();
 
     // Proportion of rare consonants
     double rare_consonants();
@@ -68,42 +72,46 @@ public:
     double rare_letters();
 
     // Proportion of voiceless consonants
-    double voiceless();
+    double voiceless_proportion();
 
     // Proportion of voiced consonants
-    double voiced();
+    double voiced_proportion();
 
     // Proportion of combinations of three consecutive vowels and three consecutive consonants in a words
     vector<double> three_consecutive_vowels_and_consonants();
 
     // Proportion of adjectives in text
-    double adjectives();
+    double adjectives_proportion();
 
     // Most used words
     map<string, double> words_popularity();
 
     // Consecutive consonants
-    double consecutive_consonants();
+    double consecutive_consonants_proportions();
 
     // Consecutive vowels
-    double consecutive_vowels();
+    double consecutive_vowels_proportions();
 
-    // Alternating_vowel_and_consonant
+    // Alternating vowel and consonant
     double alternating_vowel_and_consonant();
 
-    // Alternating_consonant_and_vowel
+    // Alternating consonant and vowel
     double alternating_consonant_and_vowel();
 
     // Punctuation marks
-    double punctuation_marks();
+    double punctuation_marks_proportion();
+
+    // Proportion of soft consonants
+    double soft_proportion();
+
+    // Proportion of hard consonants
+    double hard_proportion();
 
     // Methods
-
-    // Getter for sentences field
-    vector<string> get_sentences();
 
     // Applies all functions to text
     map<string, double> get_all_info();
 };
 
 #endif //CMAKEPROJECT_EXTRACTOR_H
+

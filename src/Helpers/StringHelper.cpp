@@ -138,3 +138,19 @@ bool StringHelper::is_punctuation_mark(char c) {
     return StdVectorHelper::is_in_vector(StringHelper::punctuation_marks, StringHelper::to_lower(c));
 }
 
+bool StringHelper::is_soft(char c) {
+    return StdVectorHelper::is_in_vector(StringHelper::soft_letters, StringHelper::to_lower(c));
+}
+
+bool StringHelper::is_hard(char c) {
+    return StdVectorHelper::is_in_vector(StringHelper::hard_letters, StringHelper::to_lower(c));
+}
+
+bool StringHelper::is_softener(char c) {
+    return StdVectorHelper::is_in_vector(StringHelper::softeners, StringHelper::to_lower(c));
+}
+
+bool StringHelper::is_pronoun(const string &word) {
+    return StdVectorHelper::is_in_vector(StringHelper::pronouns, StringHelper::to_lower(word));
+}
+
