@@ -26,17 +26,37 @@ vector<vector<double>> Comparator::calculate_features_values() {
     return result;
 }
 
-vector<vector<double>> Comparator::compare() {
-    vector<vector<double>> result(this->files_count, vector<double>(this->files_count));
-    vector<vector<double>> features = calculate_features_values();
+vector<vector<double>> Comparator::scale_features(vector<vector<double>> features){
+
+    vector<vector<double>> values_only = features;
+    for(int col = 0; col< values_only[0].size(); col++){
+        double max_feature = values_only[0][col];
+        for(int row = 0; row<values_only.size(); row++){
+            max_feature = max(values_only[row][col], max_feature);
+        }
+
+        for(int row = 0; row<values_only.size(); row++){
+            values_only[row][col]/=max_feature; 
+        }
+    }
+    return values_only;
+}
+
+vector<vector<vector<double>>> Comparator::compare() {
+    vector<vector<double>> result_cosine(this->files_count, vector<double>(this->files_count));
+    vector<vector<double>> result_rmse(this->files_count, vector<double>(this->files_count));
+
+    vector<vector<double>> features = scale_features(calculate_features_values());
 
     for (int i = 0; i < this->files_count; i++) {
         for (int j = 0; j < this->files_count; j++) {
             vector<double> first_file = features[i];
             vector<double> second_file = features[j];
-            result[i][j] = VectorHelper::cosine_similarity(first_file, second_file);
+            result_cosine[i][j] = VectorHelper::cosine_similarity(first_file, second_file);
+            result_rmse[i][j] = VectorHelper::RMSE(first_file, second_file);
         }
     }
 
+    vector<vector<vector<double>>> result = {result_cosine, result_rmse};
     return result;
 }

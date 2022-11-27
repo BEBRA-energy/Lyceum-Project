@@ -23,9 +23,12 @@ public:
 
     vector<map<string, double>> calculate_features();
 
-    vector<vector<double>> compare();
+    // возвращает вектор матриц значений разных метрик
+    vector<vector<vector<double>>> compare();
 
     vector<vector<double>> calculate_features_values();
+
+    vector<vector<double>> Comparator::scale_features(vector<vector<double>> features);    
 };
 
 

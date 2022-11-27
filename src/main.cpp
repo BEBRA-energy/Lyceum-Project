@@ -22,15 +22,17 @@ int main() {
 
     Comparator comp(TEXT_FOLDER, files);
 
-    vector<vector<double>> result = comp.compare();
+    vector<vector<vector<double>>> result = comp.compare();
 
-    for (int i = 0; i < FILES_COUNT; i++) {
-        for (int j = 0; j < FILES_COUNT; j++) {
-            cout.width(7);
-            cout << fixed << setprecision(2) << result[i][j] * 100 << ' ';
+    for(auto res: result){
+        for (int i = 0; i < FILES_COUNT; i++) {
+            for (int j = 0; j < FILES_COUNT; j++) {
+                cout.width(7);
+                // первый - cosine similarity, второй - rmse
+                cout << fixed << setprecision(2) << res[i][j] << ' ';
+            }
+            cout << '\n';
         }
-        cout << '\n';
     }
-
     return 0;
 }
