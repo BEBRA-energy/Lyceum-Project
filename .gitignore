@@ -1,2 +1,3 @@
 /bin/*
-./CmakeFiles/
+./build/*
+./CmakeFiles/*
