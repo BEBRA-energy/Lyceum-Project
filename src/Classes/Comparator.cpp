@@ -35,6 +35,9 @@ vector<vector<double>> Comparator::scale_features(vector<vector<double>> feature
             max_feature = max(values_only[row][col], max_feature);
         }
 
+        if(max_feature==0.0)
+            continue;
+
         for(int row = 0; row<values_only.size(); row++){
             values_only[row][col]/=max_feature; 
         }

@@ -24,10 +24,16 @@ double VectorHelper::cosine_similarity(const vector<double> &a, const vector<dou
 double VectorHelper::RMSE(const vector<double> &a, const vector<double> &b){
     int length = a.size();
 
-    long double total_sum = 0;
-    for(int i =0;i<length;i++){
-        total_sum += a[i]*a[i] + b[i]*b[i];
+    vector<double> diffs;
+    // получение разностей
+    for(int i = 0;i<length;i++){
+        diffs.push_back(a[i]-b[i]);
     }
 
-    return sqrtl(total_sum/length);
+    long double total_sum = 0;
+    for(int i =0;i<length;i++){
+        total_sum += diffs[i]*diffs[i];
+    }
+
+    return 1.-sqrtl(total_sum/length);
 }

@@ -33,6 +33,7 @@ int main() {
             }
             cout << '\n';
         }
+        cout<<"RMSE"<<endl;
     }
     return 0;
 }

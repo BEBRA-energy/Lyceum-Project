@@ -28,7 +28,7 @@ public:
 
     vector<vector<double>> calculate_features_values();
 
-    vector<vector<double>> Comparator::scale_features(vector<vector<double>> features);    
+    vector<vector<double>> scale_features(vector<vector<double>> features);    
 };
 
 
