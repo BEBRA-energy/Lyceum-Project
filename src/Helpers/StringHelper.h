@@ -52,7 +52,7 @@ private:
 
     // List of adjective endings
     inline const static vector<string> adjective_ends = {
-            "ой", "ей", "ай", "ом", "ый", "яе", "ее", "ое", "им", "ом", "ем", "ая", "ья", "ые", "ие", "ье", "ой", "их", "ых", "ым", "ую", "ью", "ее", "ае", "ому", "ого", "ему", "его"
+            "ой", "ей", "ай", "ом", "ый", "яе", "ее", "ое", "им", "ом", "ем", "ая", "ья", "ые", "ие", "ье", "ой", "их", "ых", "ым", "ую", "ью", "ее", "ае", "ому", "ого", "ему", "его", "ыми", "ими"
     };
 
     // List of punctuation marks
@@ -65,7 +65,7 @@ private:
     inline const static vector<char> soft_letters = {'й', 'щ', 'ч'};
 
     // List of hard letters
-    inline const static  vector<char> hard_letters = {'ж', 'ш', 'ц'};
+    inline const static vector<char> hard_letters = {'ж', 'ш', 'ц'};
 
     // List of pronouns
     inline const static vector<string> pronouns = {

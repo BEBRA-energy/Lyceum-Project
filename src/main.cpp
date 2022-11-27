@@ -9,9 +9,9 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "ru");
 
-    const string TEXT_FOLDER = "../texts";
-    const int FILES_COUNT = 4;
-    const int LARGE_FILES = 1;
+    const string TEXT_FOLDER = "../texts/test";
+    const int FILES_COUNT = 7;
+    const bool LARGE_FILES = false;
 
     vector<string> files(FILES_COUNT);
 
