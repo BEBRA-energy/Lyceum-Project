@@ -1,7 +1,6 @@
 #define LOCAL_DEBUG
 
 #include "Classes/Extractor.h"
-#include "Classes/main.h"
 #include "Helpers/VectorHelper.h"
 
 #include <iostream>
@@ -41,6 +40,18 @@ void compare(const string text_folder) {
         for (auto value: text_features)
             text_values.push_back(value.second);
         values_only.push_back(text_values);
+    }
+
+    // scaling 
+    for(int col = 0; col< values_only[0].size(); col++){
+        int max_feature = values_only[0][col];
+        for(int row = 0; row<values_only.size(); row++){
+            max_feature = max(values_only[row][col], max_feature)
+        }
+
+        for(int row = 0; row<values_only.size(); row++){
+            values_only[row][col]/=max_feature; 
+        }
     }
 
     int num_texts = values_only.size();
