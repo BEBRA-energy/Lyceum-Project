@@ -44,9 +44,9 @@ void compare(const string text_folder) {
 
     // scaling 
     for(int col = 0; col< values_only[0].size(); col++){
-        int max_feature = values_only[0][col];
+        double max_feature = values_only[0][col];
         for(int row = 0; row<values_only.size(); row++){
-            max_feature = max(values_only[row][col], max_feature)
+            max_feature = max(values_only[row][col], max_feature);
         }
 
         for(int row = 0; row<values_only.size(); row++){
@@ -55,15 +55,26 @@ void compare(const string text_folder) {
     }
 
     int num_texts = values_only.size();
-    ofstream res_stream("output.txt");
+    ofstream cos_stream("output_cosine.txt");
     for (int i = 1; i <= num_texts; i++) {
         vector<double> i_vector_similarities;
         for (int j = 1; j <= num_texts; j++) {
             vector<double> text1 = values_only[i - 1];
             vector<double> text2 = values_only[j - 1];
-            res_stream << "text " << i << " and " << j << " " << VectorHelper::cosine_similarity(text1, text2) << endl;
+            cos_stream << "text " << i << " and " << j << " " << VectorHelper::cosine_similarity(text1, text2) << endl;
         }
-        res_stream << endl;
+        cos_stream << endl;
+    }
+
+    ofstream rmse_stream("output_rmse.txt");
+    for (int i = 1; i <= num_texts; i++) {
+        vector<double> i_vector_similarities;
+        for (int j = 1; j <= num_texts; j++) {
+            vector<double> text1 = values_only[i - 1];
+            vector<double> text2 = values_only[j - 1];
+            rmse_stream << "text " << i << " and " << j << " " << VectorHelper::RMSE(text1, text2) << endl;
+        }
+        rmse_stream << endl;
     }
 }
 

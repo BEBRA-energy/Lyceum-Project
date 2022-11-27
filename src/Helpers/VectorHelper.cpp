@@ -20,3 +20,14 @@ double VectorHelper::cosine_similarity(const vector<double> &a, const vector<dou
     double similarity = dot_product(a, b) / (euclidian_norm(a) * euclidian_norm(b));
     return similarity;
 }
+
+double VectorHelper::RMSE(const vector<double> &a, const vector<double> &b){
+    int length = a.size();
+
+    long double total_sum = 0;
+    for(int i =0;i<length;i++){
+        total_sum += a[i]*a[i] + b[i]*b[i];
+    }
+
+    return sqrtl(total_sum/length);
+}
