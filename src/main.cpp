@@ -24,16 +24,17 @@ int main() {
 
     vector<vector<vector<double>>> result = comp.compare();
 
-    for(auto res: result){
+    map<int, string> metrics = {{0, "Cosine Similarity"}, {1, "RMSE"}};
+
+    for(int metric = 0;metric<result.size();metric++){
+        cout<<"METRIC: "<<metrics[metric]<<endl;
         for (int i = 0; i < FILES_COUNT; i++) {
             for (int j = 0; j < FILES_COUNT; j++) {
                 cout.width(7);
-                // первый - cosine similarity, второй - rmse
-                cout << fixed << setprecision(2) << res[i][j] << ' ';
+                cout << fixed << setprecision(2) << result[metric][i][j] << ' ';
             }
             cout << '\n';
         }
-        cout<<"RMSE"<<endl;
     }
     return 0;
 }
